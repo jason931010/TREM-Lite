@@ -196,7 +196,7 @@ function login_display(){
 
 async function login() {
 	try {
-		const client_name = localStorage.UUID.split(":")[0];
+		const client_name = localStorage.UUID.split("-")[0];
 		const client_ver = app.getVersion();
 		const email = user_email.value;
 		const pass = user_pass.value;
