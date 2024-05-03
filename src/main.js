@@ -51,6 +51,12 @@ function createWindow() {
 		checkForUpdates();
 		setInterval(() => checkForUpdates(), 600_000);
 	});
+	MainWindow.webContents.executeJavaScript("localStorage.getItem(\"UUID\")").then(value => {
+		if (!value) {
+			const uuid = require("uuid").v4();
+			MainWindow.webContents.executeJavaScript(`localStorage.setItem("UUID","${uuid}")`);
+		}
+	});
 	MainWindow.webContents.executeJavaScript("localStorage.getItem(\"init\")").then(value => {
 		if (!value) {
 			MainWindow.webContents.executeJavaScript("localStorage.setItem(\"init\",true)").then(v => {

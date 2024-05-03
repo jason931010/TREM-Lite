@@ -78,6 +78,7 @@
     "node-fetch": "^2.6.7",
     "require-reload": "^0.2.2",
     "speak-tts": "^2.0.8",
+    "uuid": "^9.0.1",
     "ws": "^8.14.2"
   }
 }
