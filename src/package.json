@@ -66,7 +66,7 @@
     "stylelint-order": "^6.0.3"
   },
   "dependencies": {
-    "@electron/remote": "^2.0.12",
+    "@electron/remote": "2.1.2",
     "bytenode": "^1.5.6",
     "electron-common-ipc": "^16.0.4",
     "electron-fcm-push-receiver": "^2.1.7",
