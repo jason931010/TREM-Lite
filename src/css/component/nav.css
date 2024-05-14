@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
   position: absolute;
   top: 4.5rem;
   left: 8px;
@@ -36,10 +36,11 @@
     height: 24px;
     aspect-ratio: 1;
     font-size: 24px;
+    font-weight: 600;
   }
 
   >.nav-item-label {
-    font-weight: 400;
+    font-weight: 600;
     opacity: 0;
     transition: opacity .1s cubic-bezier(0.2, 0, 0, 1);
   }
@@ -62,4 +63,37 @@
   }
 
   cursor: pointer;
+}
+
+/**偵測地震震度**/
+
+.nav-btn.eew_shindo_2 {
+  border: none;
+  box-shadow: 0 0 0 5px #1e9632;
+}
+
+.nav-btn.eew_shindo_4 {
+  border: none;
+  box-shadow: 0 0 0 5px #ff9900;
+}
+
+.nav-btn.eew_shindo_5 {
+  border: none;
+  box-shadow: 0 0 0 5px #c90000;
+}
+
+.eew_shindo_2>.nav-item-icon,
+.eew_shindo_4>.nav-item-icon,
+.eew_shindo_5>.nav-item-icon {
+  border: 4px solid #ff9900;
+  box-shadow: 0 0 10px 5px #00000052;
+  border-radius: 30px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  right: 12px;
+  position: relative;
+  align-items: center;
+  display: grid;
+  font-weight: 600;
 }
