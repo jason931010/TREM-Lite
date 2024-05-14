@@ -105,7 +105,7 @@ body {
       }
 
       >.info-body-title-title-box {
-        width: 56px;
+        width: 75px;
         aspect-ratio: 1;
         line-height: 56px;
         font-size: 56px;
@@ -474,7 +474,7 @@ body {
       background-color: #505050;
 
       >.local-intensity {
-        width: auto;
+        width: 61px;
         aspect-ratio: 1;
         padding: 8px;
         border-radius: inherit;
@@ -719,9 +719,9 @@ body:has(#report-panel.show) .pga_dot {
   border-radius: 50%;
   text-align: center;
   font-weight: 900;
-  font-size: 11px;
-  max-height: 15px;
-  max-width: 15px;
+  font-size: 12px;
+  /*max-height: 15px;*/
+  /*max-width: 15px;*/
 }
 
 .dot_max {
@@ -731,9 +731,9 @@ body:has(#report-panel.show) .pga_dot {
   border-radius: 50%;
   text-align: center;
   font-weight: 900;
-  font-size: 11px;
-  max-height: 15px;
-  max-width: 15px;
+  font-size: 12px;
+  /*max-height: 15px;*/
+  /*max-width: 15px;*/
 }
 
 .report_station_box {
