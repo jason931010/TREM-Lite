@@ -48,7 +48,6 @@ body {
 }
 
 .info-box {
-  /* visibility: hidden; */
   position: absolute;
   top: 0;
   right: 0;
@@ -385,7 +384,6 @@ body {
   width: calc(20vw + 16px);
   min-width: 290px;
   margin: 8px;
-  z-index: 1000;
 
   >.realtime-box {
     flex: 1;
