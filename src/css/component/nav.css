@@ -85,7 +85,6 @@
 .eew_shindo_2>.nav-item-icon,
 .eew_shindo_4>.nav-item-icon,
 .eew_shindo_5>.nav-item-icon {
-  border: 4px solid #ff9900;
   box-shadow: 0 0 10px 5px #00000052;
   border-radius: 30px;
   height: 40px;
@@ -96,4 +95,16 @@
   align-items: center;
   display: grid;
   font-weight: 600;
+}
+
+.eew_shindo_2>.nav-item-icon {
+  border: 4px solid #1e9632;
+}
+
+.eew_shindo_4>.nav-item-icon {
+  border: 4px solid #ff9900;
+}
+
+.eew_shindo_5>.nav-item-icon {
+  border: 4px solid #c90000;
 }
