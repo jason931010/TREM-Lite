@@ -1,6 +1,15 @@
+@import url(./component/button.css);
+@import url(./component/chip.css);
+@import url(./component/nav.css);
+@import url(./component/report.css);
+@import url(./component/report-intensity-marker.css);
+@import url(./component/report-list.css);
+@import url(./component/report-marker.css);
+
 body {
   user-select: none;
   margin: 0;
+  font-family: "Lato", "Noto Sans TC", sans-serif;
   text-rendering: optimizeLegibility;
 
   --surface-hsl: 0deg 0% 25%;
@@ -100,6 +109,7 @@ body {
         aspect-ratio: 1;
         line-height: 56px;
         font-size: 56px;
+        font-family: "Open Sans", sans-serif;
         font-weight: 800;
         text-align: center;
       }
@@ -114,6 +124,7 @@ body {
         >.info-body-location-text {
           line-height: 20px;
           font-size: 20px;
+          font-family: "Noto Sans TC";
           font-weight: 700;
         }
 
@@ -237,6 +248,7 @@ body {
         display: flex;
         align-items: center;
         gap: 8px;
+        font-family: "Open Sans", sans-serif;
 
         >.info-body-footer-value-time {
           line-height: 16px;
@@ -310,43 +322,6 @@ body {
   overflow-y: hidden;
 }
 
-.max-pga {
-  position: absolute;
-  left: 5px;
-  top: 5px;
-  background-color: #1F2026;
-  width: 55px;
-  color: white;
-  font-size: 10px;
-  border: 2px solid white;
-  padding: 3px;
-  border-radius: 5px;
-  z-index: 1000;
-  text-align: center;
-  font-weight: 600;
-}
-
-.rts-info-box {
-  position: absolute;
-  left: 75px;
-  top: 5px;
-  background-color: #1F2026;
-  width: 55px;
-  color: white;
-  font-size: 10px;
-  border: 2px solid white;
-  padding: 3px;
-  border-radius: 5px;
-  z-index: 1000;
-  text-align: center;
-  font-weight: 600;
-}
-
-.rts-info-body {
-  display: flex;
-  justify-content: space-between;
-}
-
 .list-box:hover {
   overflow-y: auto;
 }
@@ -374,6 +349,7 @@ body {
   width: 41px;
   height: 41px;
   font-size: 27px;
+  font-family: "OpenSans-Bold";
 }
 
 .list-info-box {
@@ -393,19 +369,21 @@ body {
   justify-content: right;
 }
 
-.list-mag-text {}
+.list-mag-text {
+  font-family: "OpenSans-Bold";
+}
 
 .intensity-container {
-  visibility: hidden;
+  visibility: unset;
   position: absolute;
   display: flex;
   flex-direction: column;
   gap: 8px;
   bottom: 0;
   right: 0;
-  height: calc(100vh - 144px);
+  height: calc(100vh - 170px);
   width: calc(20vw + 16px);
-  min-width: 293px;
+  min-width: 290px;
   margin: 8px;
   z-index: 1000;
 
@@ -421,8 +399,8 @@ body {
       flex-direction: column;
       gap: 8px;
       min-height: 0;
-      padding: 28px 12px 12px 12px;
-      border-radius: 0 0 20px 20px;
+      padding: 12px 12px 12px 12px;
+      border-radius: 20px 20px 20px 20px;
       background-color: #383838;
 
       >.realtime-header {
@@ -435,7 +413,7 @@ body {
         flex-direction: column;
         gap: 4px;
         min-height: 0;
-        border-radius: 12px;
+        border-radius: 10px;
         overflow-y: hidden;
 
         &:hover {
@@ -451,6 +429,7 @@ body {
             width: 44px;
             height: 23px;
             border-radius: 17px;
+            font-family: "Open Sans", sans-serif;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -471,7 +450,7 @@ body {
 
   >.local-box {
     display: flex;
-    gap: 8px;
+    gap: 3px;
     padding: 8px;
     padding-left: 12px;
     border-radius: 20px;
@@ -481,8 +460,9 @@ body {
     >.local-title {
       opacity: .6;
       writing-mode: vertical-rl;
-      text-orientation: upright;
+      /*text-orientation: upright;*/
       font-size: 12px;
+      text-align: center;
     }
 
     >.local-container {
@@ -494,12 +474,13 @@ body {
       background-color: #505050;
 
       >.local-intensity {
-        width: 44px;
+        width: auto;
         aspect-ratio: 1;
         padding: 8px;
         border-radius: inherit;
         box-shadow: 4px 0 4px rgb(0 0 0 / 20%);
         line-height: 44px;
+        font-family: "Open Sans", sans-serif;
         font-size: 44px;
         font-weight: 800;
         text-align: center;
@@ -544,6 +525,7 @@ body {
         color: #000;
         text-align: center;
         line-height: 20px;
+        font-family: "Open Sans", sans-serif;
         font-size: 12px;
         font-weight: 700;
       }
@@ -559,6 +541,7 @@ body {
   display: flex;
   justify-content: space-between;
   font-size: 24px;
+  font-family: 'NotoSansTC-Black';
   line-height: 1;
   margin-top: 11px;
 }
@@ -631,10 +614,12 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 18px;
+  font-family: "OpenSans-ExtraBold";
 }
 
 .city-location {
   font-size: 13px;
+  font-family: "NotoSansTC-Bold";
   padding-left: 8px;
   display: flex;
   align-items: center;
@@ -660,10 +645,12 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 18px;
+  font-family: "OpenSans-ExtraBold";
 }
 
 .town-location {
   font-size: 13px;
+  font-family: "NotoSansTC-Bold";
   padding-left: 8px;
   display: flex;
   align-items: center;
@@ -677,16 +664,14 @@ body {
   padding: 3px;
   border-radius: 5px;
   color: red;
-  background-color: #2B2B30;
-  font-size: 20px;
+  font-size: 15px;
   z-index: 1000;
 }
 
 .icon {
   position: absolute;
   bottom: 0;
-  left: 195;
-  margin: 3px;
+  left: 150px;
   padding: 3px;
   color: red;
   z-index: 1000;
@@ -694,9 +679,10 @@ body {
 
 .leaflet-tooltip {
   padding: 0;
-  border: 2px solid #888;
+  border: unset;
   border-radius: 8px;
-  background-color: #333439;
+  box-shadow: 4px 0 4px rgb(0 0 0 / 26%);
+  background-color: #000000b8;
 }
 
 .leaflet-tooltip-left::before {
@@ -754,10 +740,11 @@ body:has(#report-panel.show) .pga_dot {
   padding: 8px;
   border-radius: inherit;
   color: white;
-  background-color: black;
+  font-family: var(--system-font);
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
+  background-color: #00000069;
 }
 
 .tooltip-location {
@@ -767,7 +754,7 @@ body:has(#report-panel.show) .pga_dot {
 
 .tooltip-uuid {
   margin-left: 4px;
-  opacity: .4;
+  opacity: .6;
   font-size: 14px;
 }
 
@@ -781,10 +768,51 @@ body:has(#report-panel.show) .pga_dot {
 .tooltip-field-name {
   margin-right: 4px;
   opacity: .6;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .tooltip-field-value {
-  font-size: 17px;
+  font-size: 15px;
   font-variant-numeric: tabular-nums;
+}
+
+.max-pga {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  background-color: #00000075;
+  width: 60px;
+  color: white;
+  font-size: 11px;
+  border: 2px solid #00000008;
+  padding: 3px;
+  border-radius: 5px;
+  z-index: 1000;
+  text-align: center;
+  font-weight: 500;
+}
+
+#max-pga {
+  margin-top: 5px;
+}
+
+.rts-info-box {
+  position: absolute;
+  left: 85px;
+  top: 5px;
+  background-color: #00000075;
+  width: 60px;
+  color: white;
+  font-size: 11px;
+  border: 2px solid #00000008;
+  padding: 3px;
+  border-radius: 5px;
+  z-index: 1000;
+  text-align: center;
+  font-weight: 500;
+}
+
+.rts-info-body {
+  display: flex;
+  justify-content: space-between;
 }
