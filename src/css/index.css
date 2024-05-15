@@ -11,6 +11,7 @@ body {
   margin: 0;
   font-family: "Lato", "Noto Sans TC", sans-serif;
   text-rendering: optimizeLegibility;
+  overflow: hidden;
 
   --surface-hsl: 0deg 0% 25%;
   --surface-variant-hsl: 0deg 0% 20%;
@@ -893,4 +894,132 @@ body:has(#report-panel.show) .pga_dot {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-feature-settings: "liga";
+}
+
+/**地震速報、海嘯警報下方警語**/
+
+.warning-message {
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1001;
+  position: fixed;
+  top: calc(100vh - 0.5rem);
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+}
+
+.tsunami-warning {
+  border: 4px solid #5cadff;
+  border-radius: 100px;
+  box-shadow: 0 0 10px 0px #5cadff;
+  background-color: rgb(12 12 12 / 14%);
+  backdrop-filter: blur(5px);
+  display: grid;
+  width: 480px;
+  margin-top: 5px;
+  height: auto;
+}
+
+.tsunami-content .nav-item-icon {
+  color: #5cadff;
+  font-size: 3rem;
+  order: -1;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  height: 48px;
+  width: 48px;
+}
+
+.tsunami-title {
+  color: #5cadff;
+  font-size: 25px;
+  font-weight: 700;
+  order: 1;
+}
+
+.tsunami-area {
+  color: #fff;
+  font-weight: 100;
+  order: 2;
+}
+
+.tsunami-content {
+  display: flex;
+  flex-direction: inherit;
+  align-items: center;
+  position: relative;
+}
+
+.tsunami-title,
+.tsunami-area {
+  width: 100%;
+}
+
+.earthquake-warning {
+  border: 4px solid #ffd640;
+  border-radius: 100px;
+  box-shadow: 0 0 10px 0px #ffd640;
+  background-color: rgb(12 12 12 / 14%);
+  backdrop-filter: blur(5px);
+  height: 4rem;
+  display: grid;
+  width: 430px;
+  margin-top: 5px;
+  height: auto;
+}
+
+.earthquake-content .nav-item-icon {
+  color: #ffd640;
+  font-size: 3rem;
+  order: -1;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  font-size: 3rem;
+  height: 48px;
+  width: 48px;
+}
+
+.earthquake-title {
+  color: #ffd640;
+  font-size: 25px;
+  font-weight: 700;
+  order: 1;
+}
+
+.earthquake-area {
+  color: #fff;
+  font-weight: 100;
+  order: 2;
+}
+
+.earthquake-content {
+  display: flex;
+  flex-direction: inherit;
+  align-items: center;
+  position: relative;
+}
+
+.earthquake-title,
+.earthquake-area {
+  width: 100%;
+}
+
+@media (max-width: 1110px) {
+  .warning-message {
+    transform: translate(-50%, -95%) scale(0.9);
+  }
+}
+
+@media (max-width: 1010px) {
+  .warning-message {
+    transform: translate(-50%, -90%) scale(0.8);
+  }
+}
+
+@media (max-width: 910px) {
+  .warning-message {
+    transform: translate(-75%, -110%) scale(0.8);
+  }
 }

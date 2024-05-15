@@ -17,16 +17,27 @@
 
     <nav class="nav-bar">
         <div class="nav-item">
-            <button id="nav-home" class="nav-btn" type="button" data-panel="home">
+            <button id="nav-home" class="nav-btn on" type="button" data-panel="home">
                 <span class="nav-item-icon material-symbols-rounded">home</span>
-                <span class="nav-item-label">首頁</span>
-        </div>
+                <span class="nav-item-label">首頁畫面</span>
         </div>
         <div class="nav-item">
             <button id="nav-report-panel" class="nav-btn" type="button" data-panel="report">
                 <span class="nav-item-icon material-symbols-rounded">earthquake</span>
                 <span class="nav-item-label">地震報告</span>
         </div>
+        <div class="nav-item">
+            <button id="nav-tsunami-panel" class="nav-btn" type="button" data-panel="tsunami">
+                <span class="nav-item-icon material-symbols-rounded">tsunami</span>
+                <span class="nav-item-label">海嘯資訊</span>
+        </div>
+        <div class="below-nav">
+            <div class="nav-item">
+                <button id="nav-settings-panel" class="nav-btn" type="button" data-panel="settings">
+                    <span class="nav-item-icon material-symbols-rounded">Settings</span>
+                    <span class="nav-item-label">設定</span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -81,6 +92,24 @@
         </div>
     </div>
 
+    <div class="warning-message">
+        <div class="earthquake-warning">
+            <div class="earthquake-content"> <span class="nav-item-icon material-symbols-rounded">crisis_alert</span>
+                <div>
+                    <div class="earthquake-title">地震速報發布中 慎防強烈搖晃</div>
+                    <div class="earthquake-area">花蓮縣近海 預估規模4.5</div>
+                </div>
+            </div>
+        </div>
+        <div class="tsunami-warning">
+            <div class="tsunami-content"> <span class="nav-item-icon material-symbols-rounded">tsunami</span>
+                <div>
+                    <div class="tsunami-title">海嘯警報發布中 請盡速往高處避難</div>
+                    <div class="tsunami-area">北部沿海地區 東北沿海地區</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="intensity-container">
         <div class="realtime-box">

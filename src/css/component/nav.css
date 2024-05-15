@@ -7,8 +7,13 @@
   top: 4.5rem;
   left: 8px;
   z-index: 9999999;
+  height: 100%;
 
   >.nav-item {
+    display: flex;
+  }
+
+  >.below-nav .nav-item {
     display: flex;
   }
 }
@@ -65,36 +70,36 @@
   cursor: pointer;
 }
 
+.nav-btn.on {
+  opacity: 1;
+}
+
+.below-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  z-index: 9999999;
+  height: auto;
+  position: fixed;
+  bottom: 2.5rem
+}
+
 /**偵測地震震度**/
 
-.nav-btn.eew_shindo_2 {
+.eew_shindo_2 {
   border: none;
   box-shadow: 0 0 0 5px #1e9632;
 }
 
-.nav-btn.eew_shindo_4 {
+.eew_shindo_4 {
   border: none;
   box-shadow: 0 0 0 5px #ff9900;
 }
 
-.nav-btn.eew_shindo_5 {
+.eew_shindo_5 {
   border: none;
   box-shadow: 0 0 0 5px #c90000;
-}
-
-.eew_shindo_2>.nav-item-icon,
-.eew_shindo_4>.nav-item-icon,
-.eew_shindo_5>.nav-item-icon {
-  box-shadow: 0 0 10px 5px #00000052;
-  border-radius: 30px;
-  height: 40px;
-  width: 40px;
-  text-align: center;
-  right: 12px;
-  position: relative;
-  align-items: center;
-  display: grid;
-  font-weight: 600;
 }
 
 .eew_shindo_2>.nav-item-icon {
@@ -107,4 +112,61 @@
 
 .eew_shindo_5>.nav-item-icon {
   border: 4px solid #c90000;
+}
+
+/**海嘯警報**/
+
+.tsunami_warning_green {
+  border: none;
+  box-shadow: 0 0 0 5px #1e9632;
+}
+
+.tsunami_warning_yellow {
+  border: none;
+  box-shadow: 0 0 0 5px #ffc800;
+}
+
+.tsunami_warning_orange {
+  border: none;
+  box-shadow: 0 0 0 5px #ff9900;
+}
+
+.tsunami_warning_red {
+  border: none;
+  box-shadow: 0 0 0 5px #c90000;
+}
+
+.tsunami_warning_green>.nav-item-icon {
+  border: 4px solid #1e9632;
+}
+
+.tsunami_warning_yellow>.nav-item-icon {
+  border: 4px solid #ffc800;
+}
+
+.tsunami_warning_orange>.nav-item-icon {
+  border: 4px solid #ff9900;
+}
+
+.tsunami_warning_red>.nav-item-icon {
+  border: 4px solid #c90000;
+}
+
+.eew_shindo_2>.nav-item-icon,
+.eew_shindo_4>.nav-item-icon,
+.eew_shindo_5>.nav-item-icon,
+.tsunami_warning_green>.nav-item-icon,
+.tsunami_warning_orange>.nav-item-icon,
+.tsunami_warning_yellow>.nav-item-icon,
+.tsunami_warning_red>.nav-item-icon {
+  box-shadow: 0 0 10px 5px #00000052;
+  border-radius: 30px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  right: 12px;
+  position: relative;
+  align-items: center;
+  display: grid;
+  font-weight: 600;
 }
