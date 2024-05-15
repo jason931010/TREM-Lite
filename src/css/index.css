@@ -1,7 +1,17 @@
+@import url(./component/button.css);
+@import url(./component/chip.css);
+@import url(./component/nav.css);
+@import url(./component/report.css);
+@import url(./component/report-intensity-marker.css);
+@import url(./component/report-list.css);
+@import url(./component/report-marker.css);
+
 body {
   user-select: none;
   margin: 0;
+  font-family: "Lato", "Noto Sans TC", sans-serif;
   text-rendering: optimizeLegibility;
+  overflow: hidden;
 
   --surface-hsl: 0deg 0% 25%;
   --surface-variant-hsl: 0deg 0% 20%;
@@ -39,7 +49,6 @@ body {
 }
 
 .info-box {
-  /* visibility: hidden; */
   position: absolute;
   top: 0;
   right: 0;
@@ -51,7 +60,7 @@ body {
   margin: 8px;
   padding: 8px;
   border-radius: 20px;
-  background-color: #505050;
+  background-color: #505050c7;
   color: white;
   white-space: nowrap;
   z-index: 1001;
@@ -96,10 +105,11 @@ body {
       }
 
       >.info-body-title-title-box {
-        width: 56px;
+        width: 75px;
         aspect-ratio: 1;
         line-height: 56px;
         font-size: 56px;
+        font-family: "Open Sans", sans-serif;
         font-weight: 800;
         text-align: center;
       }
@@ -114,6 +124,7 @@ body {
         >.info-body-location-text {
           line-height: 20px;
           font-size: 20px;
+          font-family: "Noto Sans TC";
           font-weight: 700;
         }
 
@@ -237,6 +248,7 @@ body {
         display: flex;
         align-items: center;
         gap: 8px;
+        font-family: "Open Sans", sans-serif;
 
         >.info-body-footer-value-time {
           line-height: 16px;
@@ -310,43 +322,6 @@ body {
   overflow-y: hidden;
 }
 
-.max-pga {
-  position: absolute;
-  left: 5px;
-  top: 5px;
-  background-color: #1F2026;
-  width: 55px;
-  color: white;
-  font-size: 10px;
-  border: 2px solid white;
-  padding: 3px;
-  border-radius: 5px;
-  z-index: 1000;
-  text-align: center;
-  font-weight: 600;
-}
-
-.rts-info-box {
-  position: absolute;
-  left: 75px;
-  top: 5px;
-  background-color: #1F2026;
-  width: 55px;
-  color: white;
-  font-size: 10px;
-  border: 2px solid white;
-  padding: 3px;
-  border-radius: 5px;
-  z-index: 1000;
-  text-align: center;
-  font-weight: 600;
-}
-
-.rts-info-body {
-  display: flex;
-  justify-content: space-between;
-}
-
 .list-box:hover {
   overflow-y: auto;
 }
@@ -374,6 +349,7 @@ body {
   width: 41px;
   height: 41px;
   font-size: 27px;
+  font-family: "OpenSans-Bold";
 }
 
 .list-info-box {
@@ -393,21 +369,22 @@ body {
   justify-content: right;
 }
 
-.list-mag-text {}
+.list-mag-text {
+  font-family: "OpenSans-Bold";
+}
 
 .intensity-container {
-  visibility: hidden;
+  visibility: unset;
   position: absolute;
   display: flex;
   flex-direction: column;
   gap: 8px;
   bottom: 0;
   right: 0;
-  height: calc(100vh - 144px);
+  height: calc(100vh - 170px);
   width: calc(20vw + 16px);
-  min-width: 293px;
+  min-width: 290px;
   margin: 8px;
-  z-index: 1000;
 
   >.realtime-box {
     flex: 1;
@@ -415,15 +392,16 @@ body {
     flex-direction: column;
     min-height: 0;
     color: white;
+    z-index: 1001;
 
     >.realtime-container {
       display: flex;
       flex-direction: column;
       gap: 8px;
       min-height: 0;
-      padding: 28px 12px 12px 12px;
-      border-radius: 0 0 20px 20px;
-      background-color: #383838;
+      padding: 12px 12px 12px 12px;
+      border-radius: 20px 20px 20px 20px;
+      background-color: #383838ba;
 
       >.realtime-header {
         font-size: 18px;
@@ -435,7 +413,7 @@ body {
         flex-direction: column;
         gap: 4px;
         min-height: 0;
-        border-radius: 12px;
+        border-radius: 10px;
         overflow-y: hidden;
 
         &:hover {
@@ -451,6 +429,7 @@ body {
             width: 44px;
             height: 23px;
             border-radius: 17px;
+            font-family: "Open Sans", sans-serif;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -471,18 +450,20 @@ body {
 
   >.local-box {
     display: flex;
-    gap: 8px;
+    gap: 3px;
     padding: 8px;
     padding-left: 12px;
     border-radius: 20px;
-    background-color: #383838;
+    background-color: #383838ba;
     color: #fff;
+    z-index: 1001;
 
     >.local-title {
       opacity: .6;
       writing-mode: vertical-rl;
-      text-orientation: upright;
+      /*text-orientation: upright;*/
       font-size: 12px;
+      text-align: center;
     }
 
     >.local-container {
@@ -494,12 +475,13 @@ body {
       background-color: #505050;
 
       >.local-intensity {
-        width: 44px;
+        width: 61px;
         aspect-ratio: 1;
         padding: 8px;
         border-radius: inherit;
         box-shadow: 4px 0 4px rgb(0 0 0 / 20%);
         line-height: 44px;
+        font-family: "Open Sans", sans-serif;
         font-size: 44px;
         font-weight: 800;
         text-align: center;
@@ -544,6 +526,7 @@ body {
         color: #000;
         text-align: center;
         line-height: 20px;
+        font-family: "Open Sans", sans-serif;
         font-size: 12px;
         font-weight: 700;
       }
@@ -559,6 +542,7 @@ body {
   display: flex;
   justify-content: space-between;
   font-size: 24px;
+  font-family: 'NotoSansTC-Black';
   line-height: 1;
   margin-top: 11px;
 }
@@ -631,10 +615,12 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 18px;
+  font-family: "OpenSans-ExtraBold";
 }
 
 .city-location {
   font-size: 13px;
+  font-family: "NotoSansTC-Bold";
   padding-left: 8px;
   display: flex;
   align-items: center;
@@ -660,10 +646,12 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 18px;
+  font-family: "OpenSans-ExtraBold";
 }
 
 .town-location {
   font-size: 13px;
+  font-family: "NotoSansTC-Bold";
   padding-left: 8px;
   display: flex;
   align-items: center;
@@ -677,16 +665,14 @@ body {
   padding: 3px;
   border-radius: 5px;
   color: red;
-  background-color: #2B2B30;
-  font-size: 20px;
+  font-size: 15px;
   z-index: 1000;
 }
 
 .icon {
   position: absolute;
   bottom: 0;
-  left: 195;
-  margin: 3px;
+  left: 150px;
   padding: 3px;
   color: red;
   z-index: 1000;
@@ -694,9 +680,10 @@ body {
 
 .leaflet-tooltip {
   padding: 0;
-  border: 2px solid #888;
+  border: unset;
   border-radius: 8px;
-  background-color: #333439;
+  box-shadow: 4px 0 4px rgb(0 0 0 / 26%);
+  background-color: #000000b8;
 }
 
 .leaflet-tooltip-left::before {
@@ -733,9 +720,9 @@ body:has(#report-panel.show) .pga_dot {
   border-radius: 50%;
   text-align: center;
   font-weight: 900;
-  font-size: 11px;
-  max-height: 15px;
-  max-width: 15px;
+  font-size: 12px;
+  /*max-height: 15px;*/
+  /*max-width: 15px;*/
 }
 
 .dot_max {
@@ -745,19 +732,20 @@ body:has(#report-panel.show) .pga_dot {
   border-radius: 50%;
   text-align: center;
   font-weight: 900;
-  font-size: 11px;
-  max-height: 15px;
-  max-width: 15px;
+  font-size: 12px;
+  /*max-height: 15px;*/
+  /*max-width: 15px;*/
 }
 
 .report_station_box {
   padding: 8px;
   border-radius: inherit;
   color: white;
-  background-color: black;
+  font-family: var(--system-font);
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
+  background-color: #00000069;
 }
 
 .tooltip-location {
@@ -767,7 +755,7 @@ body:has(#report-panel.show) .pga_dot {
 
 .tooltip-uuid {
   margin-left: 4px;
-  opacity: .4;
+  opacity: .6;
   font-size: 14px;
 }
 
@@ -781,10 +769,457 @@ body:has(#report-panel.show) .pga_dot {
 .tooltip-field-name {
   margin-right: 4px;
   opacity: .6;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .tooltip-field-value {
-  font-size: 17px;
+  font-size: 15px;
   font-variant-numeric: tabular-nums;
+}
+
+.max-pga {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  background-color: #00000075;
+  width: 60px;
+  color: white;
+  font-size: 11px;
+  border: 2px solid #00000008;
+  padding: 3px;
+  border-radius: 5px;
+  z-index: 1000;
+  text-align: center;
+  font-weight: 500;
+}
+
+#max-pga {
+  margin-top: 5px;
+}
+
+.rts-info-box {
+  position: absolute;
+  left: 85px;
+  top: 5px;
+  background-color: #00000075;
+  width: 60px;
+  color: white;
+  font-size: 11px;
+  border: 2px solid #00000008;
+  padding: 3px;
+  border-radius: 5px;
+  z-index: 1000;
+  text-align: center;
+  font-weight: 500;
+}
+
+.rts-info-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+@font-face {
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("./material-symbols-outlined.woff2") format("woff2");
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga";
+}
+
+@font-face {
+  font-family: "Material Symbols Rounded";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("./material-symbols-rounded.woff2") format("woff2");
+}
+
+.material-symbols-rounded {
+  font-family: "Material Symbols Rounded";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga";
+}
+
+@font-face {
+  font-family: "Material Symbols Sharp";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("./material-symbols-sharp.woff2") format("woff2");
+}
+
+.material-symbols-sharp {
+  font-family: "Material Symbols Sharp";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga";
+}
+
+/**地震速報、海嘯警報下方警語**/
+
+.warning-alert {
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1001;
+  position: fixed;
+  top: calc(100vh - 0.5rem);
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+}
+
+.warning-alert .tsunami-warning {
+  border: 4px solid #5cadff;
+  border-radius: 100px;
+  box-shadow: 0 0 10px 0px #5cadff;
+  background-color: rgb(12 12 12 / 14%);
+  backdrop-filter: blur(5px);
+  display: grid;
+  width: 480px;
+  margin-top: 15px;
+  height: auto;
+}
+
+.warning-alert .tsunami-content .nav-item-icon {
+  color: #5cadff;
+  font-size: 3rem;
+  order: -1;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  height: 48px;
+  width: 48px;
+}
+
+.warning-alert .tsunami-title {
+  color: #5cadff;
+  font-size: 25px;
+  font-weight: 700;
+  order: 1;
+}
+
+.warning-alert .tsunami-area {
+  color: #fff;
+  font-weight: 100;
+  order: 2;
+}
+
+.warning-alert .tsunami-content {
+  display: flex;
+  flex-direction: inherit;
+  align-items: center;
+  position: relative;
+}
+
+.warning-alert .tsunami-title,
+.tsunami-area {
+  width: 100%;
+}
+
+.warning-alert .earthquake-warning {
+  border: 4px solid #ffd640;
+  border-radius: 100px;
+  box-shadow: 0 0 10px 0px #ffd640;
+  background-color: rgb(12 12 12 / 14%);
+  backdrop-filter: blur(5px);
+  display: grid;
+  width: 430px;
+  margin-top: 5px;
+  height: auto;
+}
+
+.warning-alert .earthquake-content .nav-item-icon {
+  color: #ffd640;
+  font-size: 3rem;
+  order: -1;
+  margin-right: 1vw;
+  margin-left: 1vw;
+  height: 48px;
+  width: 48px;
+}
+
+.warning-alert .earthquake-title {
+  color: #ffd640;
+  font-size: 25px;
+  font-weight: 700;
+  order: 1;
+}
+
+.warning-alert .earthquake-area {
+  color: #fff;
+  font-weight: 100;
+  order: 2;
+}
+
+.warning-alert .earthquake-content {
+  display: flex;
+  flex-direction: inherit;
+  align-items: center;
+  position: relative;
+}
+
+.warning-alert .earthquake-title,
+.earthquake-area {
+  width: 100%;
+}
+
+@media (max-width: 1110px) {
+  .warning-alert {
+    transform: translate(-50%, -95%) scale(0.9);
+  }
+}
+
+@media (max-width: 1010px) {
+  .warning-alert .warning-alert {
+    transform: translate(-50%, -90%) scale(0.8);
+  }
+}
+
+@media (max-width: 910px) {
+  .warning-alert {
+    transform: translate(-75%, -110%) scale(0.8);
+  }
+
+  .warning-alert .earthquake-warning {
+    width: 410px;
+  }
+
+  .warning-alert .tsunami-warning {
+    width: 460px;
+  }
+}
+
+/**電視或曲面螢幕**/
+@media (min-width: 1920px) {
+
+  .warning-alert .earthquake-content .nav-item-icon,
+  .warning-alert .tsunami-content .nav-item-icon {
+    margin-right: 0vw;
+    margin-left: 0vw;
+  }
+
+  .warning-alert .earthquake-content,
+  .warning-alert .tsunami-content {
+    justify-content: center;
+    padding: 5px;
+  }
+
+}
+
+/**海嘯警報(進入頁面後顯示)**/
+.warning-message {
+  left: 39rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1001;
+  position: absolute;
+  top: calc(5rem);
+  transform: translate(-230%, 0);
+  pointer-events: none;
+}
+
+.warning-message .tsunami-warning {
+  border: 3px solid #ff0000;
+  border-radius: 15px;
+  background-color: rgb(0 0 0 / 58%);
+  display: grid;
+  width: 235px;
+  margin-top: 5px;
+  height: 6rem;
+}
+
+.warning-message .tsunami-content .nav-item-icon {
+  color: #ffd640;
+  font-size: 2.3rem;
+  order: -1;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  height: 48px;
+  width: 48px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.warning-message .tsunami-warning .tsunami-content .nav-item-icon:nth-child(2) {
+  font-size: 16px;
+  right: 2.1rem;
+  top: 0.8rem;
+  position: relative;
+  color: #fff;
+  height: unset;
+  width: unset;
+}
+
+.warning-message .tsunami-title {
+  color: #fff;
+  font-size: 23px;
+  font-weight: 700;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+}
+
+.warning-message .tsunami-description {
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+}
+
+.warning-message .tsunami-title,
+.tsunami-description {
+  width: 100%;
+}
+
+.warning-message .tsunami-content {
+  display: grid;
+  justify-content: center;
+}
+
+/**地震波同心圓**/
+.earthquake-waves {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  left: 35vw;
+  top: -51VW;
+}
+
+.wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.wave-1 {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #fff;
+}
+
+.wave-2 {
+  width: 200px;
+  height: 200px;
+  border: 2px solid #fff;
+}
+
+.wave-3 {
+  width: 300px;
+  height: 300px;
+  border: 2px solid #fff;
+}
+
+.wave-4 {
+  width: 400px;
+  height: 400px;
+  border: 2px solid #fff;
+}
+
+.wave-5 {
+  width: 500px;
+  height: 500px;
+  border: 2px solid #fff;
+}
+
+.wave-6 {
+  width: 600px;
+  height: 600px;
+  border: 2px solid #fff;
+}
+
+.epicenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: url(epic-center.png) center center;
+  background-size: contain;
+}
+
+.wave-label {
+  position: absolute;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.wave-1 .wave-label {
+  top: -20%;
+  left: 50%;
+}
+
+.wave-2 .wave-label {
+  top: -10%;
+  left: 50%;
+}
+
+.wave-3 .wave-label {
+  top: -7%;
+  left: 50%;
+}
+
+.wave-4 .wave-label {
+  top: -6%;
+  left: 50%;
+}
+
+.wave-5 .wave-label {
+  top: -5%;
+  left: 50%;
+}
+
+.wave-6 .wave-label {
+  top: -4%;
+  left: 50%;
 }

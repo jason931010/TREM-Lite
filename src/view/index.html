@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/font.css" />
     <link rel="stylesheet" href="../css/intensity.css" />
     <link rel="stylesheet" href="../css/leaflet.css" />
     <link rel="stylesheet" href="../css/index.css" />
@@ -14,20 +15,31 @@
         <div style="font-size: 64px;font-weight: 700;">TOS 服務條款</div>
     </div>
 
-    <!-- <nav class="nav-bar">
-      <div class="nav-item">
-        <button id="nav-home" class="nav-btn" type="button" data-panel="home">
-          <span class="nav-item-icon material-symbols-rounded">home</span>
-          <span class="nav-item-label">主頁</span>
+    <nav class="nav-bar">
+        <div class="nav-item">
+            <button id="nav-home" class="nav-btn on" type="button" data-panel="home">
+                <span class="nav-item-icon material-symbols-rounded">home</span>
+                <span class="nav-item-label">首頁畫面</span>
         </div>
-      </div>
-      <div class="nav-item">
-        <button id="nav-report-panel" class="nav-btn" type="button" data-panel="report">
-          <span class="nav-item-icon material-symbols-rounded">earthquake</span>
-          <span class="nav-item-label">地震報告</span>
+        <div class="nav-item">
+            <button id="nav-report-panel" class="nav-btn" type="button" data-panel="report">
+                <span class="nav-item-icon material-symbols-rounded">earthquake</span>
+                <span class="nav-item-label">地震報告</span>
         </div>
-      </div>
-    </nav> -->
+        <div class="nav-item">
+            <button id="nav-tsunami-panel" class="nav-btn" type="button" data-panel="tsunami">
+                <span class="nav-item-icon material-symbols-rounded">tsunami</span>
+                <span class="nav-item-label">海嘯資訊</span>
+        </div>
+        <div class="below-nav">
+            <div class="nav-item">
+                <button id="nav-settings-panel" class="nav-btn" type="button" data-panel="settings">
+                    <span class="nav-item-icon material-symbols-rounded">Settings</span>
+                    <span class="nav-item-label">設定</span>
+                </button>
+            </div>
+        </div>
+    </nav>
 
     <div id="map" class="map"></div>
 
@@ -80,8 +92,108 @@
         </div>
     </div>
 
+    <div class="earthquake-waves" style="display:none;">
+        <div class="wave wave-1">
+            <div class="epicenter"></div>
+            <div class="wave-label">10秒</div>
+        </div>
+        <div class="wave wave-2">
+            <div class="wave-label">15秒</div>
+        </div>
+        <div class="wave wave-3">
+            <div class="wave-label">20秒</div>
+        </div>
+        <div class="wave wave-4">
+            <div class="wave-label">25秒</div>
+        </div>
+        <div class="wave wave-5">
+            <div class="wave-label">30秒</div>
+        </div>
+        <div class="wave wave-6">
+            <div class="wave-label">35秒</div>
+        </div>
+    </div>
 
-    <!-- <div class="intensity-container">
+    <div class="warning-alert">
+        <div class="earthquake-warning">
+            <div class="earthquake-content">
+                <span class="nav-item-icon material-symbols-rounded">crisis_alert</span>
+                <div>
+                    <div class="earthquake-title">地震速報發布中 慎防強烈搖晃</div>
+                    <div class="earthquake-area">花蓮縣近海 預估規模4.5</div>
+                </div>
+            </div>
+        </div>
+        <div class="tsunami-warning">
+            <div class="tsunami-content">
+                <span class="nav-item-icon material-symbols-rounded">tsunami</span>
+                <div>
+                    <div class="tsunami-title">海嘯警報發布中 請盡速往高處避難</div>
+                    <div class="tsunami-area">北部沿海地區 東北沿海地區 東北沿海地區 東北沿海地區 東北沿海地區 東北沿海地區</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="warning-message">
+        <div class="tsunami-warning">
+            <div class="tsunami-content">
+                <div style="display: flex;align-items: center;">
+                    <span class="nav-item-icon material-symbols-rounded">warning</span>
+                    <span class="nav-item-icon material-symbols-rounded">waves</span>
+                    <div class="tsunami-title">海嘯警報！</div>
+
+                </div>
+                <div class="tsunami-description">海嘯警報發布中，請遠離海岸及水域，盡速前往高速避難！</div>
+            </div>
+        </div>
+        <div class="tsunami-warning">
+            <div class="tsunami-content">
+                <div style="display: flex;align-items: center;">
+                    <span class="nav-item-icon material-symbols-rounded">warning</span>
+                    <span class="nav-item-icon material-symbols-rounded">waves</span>
+                    <div class="tsunami-title">海嘯警報！</div>
+
+                </div>
+                <div class="tsunami-description">海嘯警報發布中，請遠離海岸及水域，盡速前往高速避難！</div>
+            </div>
+        </div>
+        <div class="tsunami-warning">
+            <div class="tsunami-content">
+                <div style="display: flex;align-items: center;">
+                    <span class="nav-item-icon material-symbols-rounded">warning</span>
+                    <span class="nav-item-icon material-symbols-rounded">waves</span>
+                    <div class="tsunami-title">海嘯警報！</div>
+
+                </div>
+                <div class="tsunami-description">海嘯警報發布中，請遠離海岸及水域，盡速前往高速避難！</div>
+            </div>
+        </div>
+        <div class="tsunami-warning">
+            <div class="tsunami-content">
+                <div style="display: flex;align-items: center;">
+                    <span class="nav-item-icon material-symbols-rounded">warning</span>
+                    <span class="nav-item-icon material-symbols-rounded">waves</span>
+                    <div class="tsunami-title">海嘯警報！</div>
+
+                </div>
+                <div class="tsunami-description">海嘯警報發布中，請遠離海岸及水域，盡速前往高速避難！</div>
+            </div>
+        </div>
+        <div class="tsunami-warning">
+            <div class="tsunami-content">
+                <div style="display: flex;align-items: center;">
+                    <span class="nav-item-icon material-symbols-rounded">warning</span>
+                    <span class="nav-item-icon material-symbols-rounded">waves</span>
+                    <div class="tsunami-title">海嘯警報！</div>
+
+                </div>
+                <div class="tsunami-description">海嘯警報發布中，請遠離海岸及水域，盡速前往高速避難！</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="intensity-container">
         <div class="realtime-box">
             <div class="realtime-container">
                 <div class="realtime-header">即時震度</div>
@@ -167,7 +279,6 @@
             </div>
         </div>
     </div>
-
     <div class="report-list-wrapper">
         <div id="report-panel" class="report-list-scrollview panel">
             <div class="report-list-scroller">
@@ -189,8 +300,8 @@
 
                 <div class="report-title">
                     <div class="report-title-container">
-                        <span id="report-subtitle" class="report-subtitle">編號 112085</span>
-                        <span id="report-title" class="report-title">宜蘭縣 蘇澳鎮</span>
+                        <span id="report-subtitle" class="report-subtitle">編號 - - - -</span>
+                        <span id="report-title" class="report-title">report title</span>
                     </div>
                     <div id="report-max-intensity" class="report-max-intensity intensity-3"></div>
                 </div>
@@ -217,7 +328,7 @@
                         <div class="report-detail-field-divider"></div>
                         <div class="report-detail-field-content-container">
                             <div class="report-detail-field-name">發震時間</div>
-                            <div id="report-time" class="report-detail-field-value">2023-12-31 05:57:30</div>
+                            <div id="report-time" class="report-detail-field-value">0000-01-01 00:00:00</div>
                         </div>
                     </div>
                     <div class="report-detail-field">
@@ -225,7 +336,7 @@
                         <div class="report-detail-field-divider"></div>
                         <div class="report-detail-field-content-container">
                             <div class="report-detail-field-name">震央位置</div>
-                            <div id="report-location" class="report-detail-field-value">宜蘭縣政府南南東方 14.2 公里</div>
+                            <div id="report-location" class="report-detail-field-value">report location</div>
                         </div>
                     </div>
                     <div class="report-detail-field">
@@ -234,9 +345,9 @@
                         <div class="report-detail-field-content-container">
                             <div class="report-detail-field-name">震央座標</div>
                             <div class="report-detail-field-value"><span class="value-unit-pair"><span
-                                        id="report-longitude" class="field-value">121.83</span><span
+                                        id="report-longitude" class="field-value">- - -</span><span
                                         class="field-unit">°E</span></span><span class="value-unit-pair"><span
-                                        id="report-latitude" class="field-value">24.62</span><span
+                                        id="report-latitude" class="field-value">- - -</span><span
                                         class="field-unit">°N</span></span></div>
                         </div>
                     </div>
@@ -248,7 +359,7 @@
                                 <div class="report-detail-field-name">規模</div>
                                 <div class="report-detail-field-value"><span class="value-unit-pair"><span
                                             class="field-unit">M<sub>L</sub></span><span id="report-magnitude"
-                                            class="field-value">4.5</span></span></div>
+                                            class="field-value">- -</span></span></div>
                             </div>
                         </div>
                         <div class="report-detail-field">
@@ -258,7 +369,7 @@
                             <div class="report-detail-field-content-container">
                                 <div class="report-detail-field-name">深度</div>
                                 <div class="report-detail-field-value"><span class="value-unit-pair"><span
-                                            id="report-depth" class="field-value">47.4</span><span
+                                            id="report-depth" class="field-value">- -</span><span
                                             class="field-unit">㎞</span></span></div>
                             </div>
                         </div>
@@ -284,14 +395,76 @@
 
                     <div class="report-intensity-list-scrollview">
                         <div class="report-intensity-list-scroller">
-                            <div id="report-intensity-grouped" class="report-intensity-container"></div>
-                            <div id="report-intensity-all" class="report-intensity-container"></div>
+                            <div id="report-intensity-grouped" class="report-intensity-container">
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                            </div>
+                            <div id="report-intensity-all" class="report-intensity-container">
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                                <div class="report-list-item">
+                                    <div class="report-intensity intensity-9">7</div>
+                                    <div class="report-location">臺南市歸仁區</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <div class="time" id="time">---- / -- / -- -- : -- : --</div>
     <div class="icon">

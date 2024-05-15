@@ -1,0 +1,172 @@
+.nav-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: absolute;
+  top: 4.5rem;
+  left: 8px;
+  z-index: 9999999;
+  height: 100%;
+
+  >.nav-item {
+    display: flex;
+  }
+
+  >.below-nav .nav-item {
+    display: flex;
+  }
+}
+
+.nav-btn {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  padding-right: 16px;
+  border-radius: 32px;
+  background-color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  overflow: hidden;
+  height: 24px;
+  white-space: nowrap;
+  flex: 16px 0;
+  opacity: .6;
+  transition: flex .2s cubic-bezier(0.2, 0, 0, 1),
+    opacity .2s cubic-bezier(0.2, 0, 0, 1);
+
+  >.nav-item-icon {
+    height: 24px;
+    aspect-ratio: 1;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  >.nav-item-label {
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity .1s cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+
+  &.active,
+  &:hover {
+    flex: 1;
+
+    >.nav-item-label {
+      opacity: 1;
+    }
+  }
+
+  cursor: pointer;
+}
+
+.nav-btn.on {
+  opacity: 1;
+}
+
+.below-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  z-index: 9999999;
+  height: auto;
+  position: fixed;
+  bottom: 2.5rem
+}
+
+/**偵測地震震度**/
+
+.eew_shindo_2 {
+  border: none;
+  box-shadow: 0 0 0 5px #1e9632;
+}
+
+.eew_shindo_4 {
+  border: none;
+  box-shadow: 0 0 0 5px #ff9900;
+}
+
+.eew_shindo_5 {
+  border: none;
+  box-shadow: 0 0 0 5px #c90000;
+}
+
+.eew_shindo_2>.nav-item-icon {
+  border: 4px solid #1e9632;
+}
+
+.eew_shindo_4>.nav-item-icon {
+  border: 4px solid #ff9900;
+}
+
+.eew_shindo_5>.nav-item-icon {
+  border: 4px solid #c90000;
+}
+
+/**海嘯警報**/
+
+.tsunami_warning_green {
+  border: none;
+  box-shadow: 0 0 0 5px #1e9632;
+}
+
+.tsunami_warning_yellow {
+  border: none;
+  box-shadow: 0 0 0 5px #ffc800;
+}
+
+.tsunami_warning_orange {
+  border: none;
+  box-shadow: 0 0 0 5px #ff9900;
+}
+
+.tsunami_warning_red {
+  border: none;
+  box-shadow: 0 0 0 5px #c90000;
+}
+
+.tsunami_warning_green>.nav-item-icon {
+  border: 4px solid #1e9632;
+}
+
+.tsunami_warning_yellow>.nav-item-icon {
+  border: 4px solid #ffc800;
+}
+
+.tsunami_warning_orange>.nav-item-icon {
+  border: 4px solid #ff9900;
+}
+
+.tsunami_warning_red>.nav-item-icon {
+  border: 4px solid #c90000;
+}
+
+.eew_shindo_2>.nav-item-icon,
+.eew_shindo_4>.nav-item-icon,
+.eew_shindo_5>.nav-item-icon,
+.tsunami_warning_green>.nav-item-icon,
+.tsunami_warning_orange>.nav-item-icon,
+.tsunami_warning_yellow>.nav-item-icon,
+.tsunami_warning_red>.nav-item-icon {
+  box-shadow: 0 0 10px 5px #00000052;
+  border-radius: 30px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  right: 12px;
+  position: relative;
+  align-items: center;
+  display: grid;
+  font-weight: 600;
+}
