@@ -1022,4 +1022,28 @@ body:has(#report-panel.show) .pga_dot {
   .warning-message {
     transform: translate(-75%, -110%) scale(0.8);
   }
+
+  .earthquake-warning {
+    width: 410px;
+  }
+
+  .tsunami-warning {
+    width: 460px;
+  }
+}
+
+/**電視或曲面螢幕**/
+@media (min-width: 1920px) {
+
+  .earthquake-content .nav-item-icon,
+  .tsunami-content .nav-item-icon {
+    margin-right: 0vw;
+    margin-left: 0vw;
+  }
+
+  .earthquake-content,
+  .tsunami-content {
+    justify-content: center;
+  }
+
 }
