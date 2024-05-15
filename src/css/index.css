@@ -1054,9 +1054,9 @@ body:has(#report-panel.show) .pga_dot {
   flex-direction: column;
   align-items: center;
   z-index: 1001;
-  position: fixed;
-  top: calc(11rem - 0.5rem);
-  transform: translate(-230%, -100%);
+  position: absolute;
+  top: calc(5rem);
+  transform: translate(-230%, 0);
   pointer-events: none;
 }
 
