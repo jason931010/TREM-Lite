@@ -1085,9 +1085,9 @@ body:has(#report-panel.show) .pga_dot {
 
 .warning-message .tsunami-warning .tsunami-content .nav-item-icon:nth-child(2) {
   font-size: 16px;
-  left: 2rem;
-  top: 2.2rem;
-  position: fixed;
+  right: 2.1rem;
+  top: 0.8rem;
+  position: relative;
   color: #fff;
   height: unset;
   width: unset;
