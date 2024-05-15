@@ -910,7 +910,7 @@ body:has(#report-panel.show) .pga_dot {
   pointer-events: none;
 }
 
-.tsunami-warning {
+.warning-alert .tsunami-warning {
   border: 4px solid #5cadff;
   border-radius: 100px;
   box-shadow: 0 0 10px 0px #5cadff;
@@ -918,11 +918,11 @@ body:has(#report-panel.show) .pga_dot {
   backdrop-filter: blur(5px);
   display: grid;
   width: 480px;
-  margin-top: 5px;
+  margin-top: 15px;
   height: auto;
 }
 
-.tsunami-content .nav-item-icon {
+.warning-alert .tsunami-content .nav-item-icon {
   color: #5cadff;
   font-size: 3rem;
   order: -1;
@@ -932,32 +932,32 @@ body:has(#report-panel.show) .pga_dot {
   width: 48px;
 }
 
-.tsunami-title {
+.warning-alert .tsunami-title {
   color: #5cadff;
   font-size: 25px;
   font-weight: 700;
   order: 1;
 }
 
-.tsunami-area {
+.warning-alert .tsunami-area {
   color: #fff;
   font-weight: 100;
   order: 2;
 }
 
-.tsunami-content {
+.warning-alert .tsunami-content {
   display: flex;
   flex-direction: inherit;
   align-items: center;
   position: relative;
 }
 
-.tsunami-title,
+.warning-alert .tsunami-title,
 .tsunami-area {
   width: 100%;
 }
 
-.earthquake-warning {
+.warning-alert .earthquake-warning {
   border: 4px solid #ffd640;
   border-radius: 100px;
   box-shadow: 0 0 10px 0px #ffd640;
@@ -969,7 +969,7 @@ body:has(#report-panel.show) .pga_dot {
   height: auto;
 }
 
-.earthquake-content .nav-item-icon {
+.warning-alert .earthquake-content .nav-item-icon {
   color: #ffd640;
   font-size: 3rem;
   order: -1;
@@ -979,27 +979,27 @@ body:has(#report-panel.show) .pga_dot {
   width: 48px;
 }
 
-.earthquake-title {
+.warning-alert .earthquake-title {
   color: #ffd640;
   font-size: 25px;
   font-weight: 700;
   order: 1;
 }
 
-.earthquake-area {
+.warning-alert .earthquake-area {
   color: #fff;
   font-weight: 100;
   order: 2;
 }
 
-.earthquake-content {
+.warning-alert .earthquake-content {
   display: flex;
   flex-direction: inherit;
   align-items: center;
   position: relative;
 }
 
-.earthquake-title,
+.warning-alert .earthquake-title,
 .earthquake-area {
   width: 100%;
 }
@@ -1011,7 +1011,7 @@ body:has(#report-panel.show) .pga_dot {
 }
 
 @media (max-width: 1010px) {
-  .warning-alert {
+  .warning-alert .warning-alert {
     transform: translate(-50%, -90%) scale(0.8);
   }
 }
@@ -1021,11 +1021,11 @@ body:has(#report-panel.show) .pga_dot {
     transform: translate(-75%, -110%) scale(0.8);
   }
 
-  .earthquake-warning {
+  .warning-alert .earthquake-warning {
     width: 410px;
   }
 
-  .tsunami-warning {
+  .warning-alert .tsunami-warning {
     width: 460px;
   }
 }
@@ -1033,15 +1033,193 @@ body:has(#report-panel.show) .pga_dot {
 /**電視或曲面螢幕**/
 @media (min-width: 1920px) {
 
-  .earthquake-content .nav-item-icon,
-  .tsunami-content .nav-item-icon {
+  .warning-alert .earthquake-content .nav-item-icon,
+  .warning-alert .tsunami-content .nav-item-icon {
     margin-right: 0vw;
     margin-left: 0vw;
   }
 
-  .earthquake-content,
-  .tsunami-content {
+  .warning-alert .earthquake-content,
+  .warning-alert .tsunami-content {
     justify-content: center;
+    padding: 5px;
   }
 
+}
+
+/**海嘯警報(進入頁面後顯示)**/
+.warning-message {
+  left: 39rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1001;
+  position: fixed;
+  top: calc(11rem - 0.5rem);
+  transform: translate(-230%, -100%);
+  pointer-events: none;
+}
+
+.warning-message .tsunami-warning {
+  border: 3px solid #ff0000;
+  border-radius: 15px;
+  background-color: rgb(0 0 0 / 58%);
+  display: grid;
+  width: 235px;
+  margin-top: 5px;
+  height: 6rem;
+}
+
+.warning-message .tsunami-content .nav-item-icon {
+  color: #ffd640;
+  font-size: 2.3rem;
+  order: -1;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  height: 48px;
+  width: 48px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.warning-message .tsunami-warning .tsunami-content .nav-item-icon:nth-child(2) {
+  font-size: 16px;
+  left: 2rem;
+  top: 2.2rem;
+  position: fixed;
+  color: #fff;
+  height: unset;
+  width: unset;
+}
+
+.warning-message .tsunami-title {
+  color: #fff;
+  font-size: 23px;
+  font-weight: 700;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+}
+
+.warning-message .tsunami-description {
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+}
+
+.warning-message .tsunami-title,
+.tsunami-description {
+  width: 100%;
+}
+
+.warning-message .tsunami-content {
+  display: grid;
+  justify-content: center;
+}
+
+/**地震波同心圓**/
+.earthquake-waves {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  left: 35vw;
+  top: -51VW;
+}
+
+.wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.wave-1 {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #fff;
+}
+
+.wave-2 {
+  width: 200px;
+  height: 200px;
+  border: 2px solid #fff;
+}
+
+.wave-3 {
+  width: 300px;
+  height: 300px;
+  border: 2px solid #fff;
+}
+
+.wave-4 {
+  width: 400px;
+  height: 400px;
+  border: 2px solid #fff;
+}
+
+.wave-5 {
+  width: 500px;
+  height: 500px;
+  border: 2px solid #fff;
+}
+
+.wave-6 {
+  width: 600px;
+  height: 600px;
+  border: 2px solid #fff;
+}
+
+.epicenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: url(epic-center.png) center center;
+  background-size: contain;
+}
+
+.wave-label {
+  position: absolute;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.wave-1 .wave-label {
+  top: -20%;
+  left: 50%;
+}
+
+.wave-2 .wave-label {
+  top: -10%;
+  left: 50%;
+}
+
+.wave-3 .wave-label {
+  top: -7%;
+  left: 50%;
+}
+
+.wave-4 .wave-label {
+  top: -6%;
+  left: 50%;
+}
+
+.wave-5 .wave-label {
+  top: -5%;
+  left: 50%;
+}
+
+.wave-6 .wave-label {
+  top: -4%;
+  left: 50%;
 }
