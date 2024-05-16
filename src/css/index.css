@@ -24,7 +24,7 @@ body {
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url("./material-symbols-rounded.woff2") format("woff2");
+  src: url("../font/material-symbols-rounded.woff2") format("woff2");
 }
 
 .material-symbols-rounded {
@@ -1062,7 +1062,7 @@ body:has(#report-panel.show) .pga_dot {
   font-weight: bold;
   text-align: center;
   display: flex;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .warning-message .tsunami-title,
@@ -1116,17 +1116,25 @@ body:has(#report-panel.show) .pga_dot {
   font-size: 18px;
   font-weight: 700;
   background: #212121;
-  border-radius: 10px;
   align-items: flex-start;
   justify-content: flex-start;
-  display: flex;
   padding: 10px;
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 150px;
+  border-radius: 10px;
+  overflow-y: hidden;
+
+  &:hover {
+    overflow-y: auto;
+  }
 }
 
 .tsunami-report-container .tsunami-text {
   font-size: 15px;
-  text-align: left;
+  text-align: start;
 }
 
 .tsunami-report-container .tsunami-warning-area {
@@ -1155,8 +1163,8 @@ body:has(#report-panel.show) .pga_dot {
 
 .tsunami-report-container .tsunami-arrival-height {
   width: 60px;
-  height: 50px;
-  border-radius: 15px 15px 15px 15px;
+  height: 49.27px;
+  border-radius: 18px 18px 18px 18px;
   font-family: "Open Sans", sans-serif;
   display: flex;
   align-items: center;
@@ -1202,11 +1210,12 @@ body:has(#report-panel.show) .pga_dot {
 }
 
 .tsunami-report-container .tsunami-arrival-area {
-  padding-left: 2rem;
-  font-size: 21px;
+  padding-left: 1rem;
+  font-size: 19px;
   font-weight: bold;
   display: flex;
   align-items: center;
+  height: 20px;
 }
 
 .tsunami-report-container .tsunami-height-six-above {
