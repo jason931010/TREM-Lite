@@ -19,6 +19,32 @@ body {
   --background-variant-hsl: 0deg 0% 16%;
 }
 
+@font-face {
+  font-family: "Material Symbols Rounded";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("./material-symbols-rounded.woff2") format("woff2");
+}
+
+.material-symbols-rounded {
+  font-family: "Material Symbols Rounded";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga";
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }
@@ -818,84 +844,6 @@ body:has(#report-panel.show) .pga_dot {
   justify-content: space-between;
 }
 
-@font-face {
-  font-family: "Material Symbols Outlined";
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url("./material-symbols-outlined.woff2") format("woff2");
-}
-
-.material-symbols-outlined {
-  font-family: "Material Symbols Outlined";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "liga";
-}
-
-@font-face {
-  font-family: "Material Symbols Rounded";
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url("./material-symbols-rounded.woff2") format("woff2");
-}
-
-.material-symbols-rounded {
-  font-family: "Material Symbols Rounded";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "liga";
-}
-
-@font-face {
-  font-family: "Material Symbols Sharp";
-  font-style: normal;
-  font-weight: 400;
-  font-display: block;
-  src: url("./material-symbols-sharp.woff2") format("woff2");
-}
-
-.material-symbols-sharp {
-  font-family: "Material Symbols Sharp";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  font-feature-settings: "liga";
-}
-
 /**地震速報、海嘯警報下方警語**/
 
 .warning-alert {
@@ -1060,6 +1008,12 @@ body:has(#report-panel.show) .pga_dot {
   pointer-events: none;
 }
 
+.tsunami-title-container {
+  display: flex;
+  align-items: center;
+  height: 42px;
+}
+
 .warning-message .tsunami-warning {
   border: 3px solid #ff0000;
   border-radius: 15px;
@@ -1108,6 +1062,7 @@ body:has(#report-panel.show) .pga_dot {
   font-weight: bold;
   text-align: center;
   display: flex;
+  font-size: 17px;
 }
 
 .warning-message .tsunami-title,
@@ -1115,9 +1070,175 @@ body:has(#report-panel.show) .pga_dot {
   width: 100%;
 }
 
-.warning-message .tsunami-content {
+.warning-message .tsunami-container .tsunami-content {
   display: grid;
   justify-content: center;
+}
+
+/**海嘯報告**/
+.tsunami-report-container {
+  visibility: unset;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  bottom: 0;
+  right: 0;
+  height: calc(100vh - 170px);
+  width: calc(18vw + 16px);
+  min-width: 290px;
+  margin: 8px;
+}
+
+.tsunami-report-container .tsunami-report-box {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  color: white;
+  z-index: 1001;
+  border-radius: 15px;
+}
+
+.tsunami-report-container .tsunami-report-box .tsunami-container {
+  display: inline-table;
+  min-height: 0;
+  padding: 12px 12px 12px 12px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: #383838ba;
+}
+
+.tsunami-report-container .tsunami-header {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.tsunami-report-container .tsunami-container .tsunami-content {
+  font-size: 18px;
+  font-weight: 700;
+  background: #212121;
+  border-radius: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  display: flex;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.tsunami-report-container .tsunami-text {
+  font-size: 15px;
+  text-align: left;
+}
+
+.tsunami-report-container .tsunami-warning-area {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  padding: 12px 12px 12px 12px;
+  border-radius: 10px 10px 10px 10px;
+  background-color: #383838ba;
+  margin-top: 1vw;
+}
+
+.tsunami-report-container .tsunami-area-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 0;
+  border-radius: 10px;
+  overflow-y: hidden;
+
+  &:hover {
+    overflow-y: auto;
+  }
+}
+
+.tsunami-report-container .tsunami-arrival-height {
+  width: 60px;
+  height: 50px;
+  border-radius: 15px 15px 15px 15px;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 30px;
+
+  &:after {
+    content: "m";
+    font-size: 13px;
+    margin-top: .7rem;
+    margin-left: 0.1vw;
+  }
+}
+
+.tsunami-arrival-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tsunami-report-container .tsunami-area-item {
+  display: flex;
+  background-color: rgb(40, 40, 40);
+  border-radius: 17px;
+  align-content: center;
+  align-items: center;
+}
+
+.tsunami-report-container .tsunami-arrival-time {
+  font-weight: bold;
+  margin-left: auto;
+  left: -1vw;
+  position: relative;
+}
+
+.tsunami-report-container .tsunami-arrival-height .nav-item-icon {
+  margin-left: -1rem;
+  left: 0.7rem;
+  position: relative;
+  bottom: 0.8rem;
+  width: 16px;
+}
+
+.tsunami-report-container .tsunami-arrival-area {
+  padding-left: 2rem;
+  font-size: 21px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.tsunami-report-container .tsunami-height-six-above {
+  border: 1px solid #c800c8;
+  color: white;
+  background-color: #c800c8;
+  box-sizing: border-box;
+
+  &:after {
+    margin-left: 0.1rem;
+  }
+}
+
+.tsunami-report-container .tsunami-height-six {
+  border: 1px solid #9600FF;
+  color: white;
+  background-color: #9600FF;
+  box-sizing: border-box;
+}
+
+.tsunami-report-container .tsunami-height-three {
+  border: 1px solid #FF0000;
+  color: white;
+  background-color: #FF0000;
+  box-sizing: border-box;
+}
+
+.tsunami-report-container .tsunami-height-one {
+  border: 1px solid #FFC800;
+  color: #313131;
+  background-color: #FFC800;
+  box-sizing: border-box;
 }
 
 /**地震波同心圓**/
