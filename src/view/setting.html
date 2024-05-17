@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/font.css" />
+    <link rel="stylesheet" href="../css/setting.css">
+</head>
+
+<body>
+    <div class="setting-wrapper">
+        <div class="setting-container">
+            <div class="setting-header">
+                <div class="setting-title">
+                    <span>設定</span>
+                    <button class="setting-reset">重設</button>
+                </div>
+                <div class="setting-buttons">
+                    <div class="button setting-general"><span>一般</span></div>
+                    <div class="button setting-graphics"><span>圖形</span></div>
+                    <div class="button setting-sound-effects"><span>音效</span></div>
+                    <div class="button setting-extended"><span>擴充</span></div>
+                    <div class="button setting-info"><span>關於</span></div>
+                </div>
+            </div>
+            <div class="setting-content">
+                <div class="window-operate">
+                    <div class="btn minimize">
+                        <div class="report-detail-field-icon material-symbols-rounded">minimize</div>
+                    </div>
+                    <div class="btn close">
+                        <div class="report-detail-field-icon material-symbols-rounded">close</div>
+                    </div>
+                </div>
+
+                <!--一般-->
+                <div class="setting-options-page">
+                    <div class="setting-page-title">一般</div>
+
+                    <div class="setting-item-wrapper">
+                        <div class="setting-item-content setting-eew-source">
+                            <span class="setting-item-title">地震預警來源</span>
+                            <div class="setting-eew-agencies">
+                                <div class="CWA">
+                                    <span>中央氣象署 (CWA)</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="JMA">
+                                    <span>気象庁 (JMA)</span>
+                                    <label class="switch">
+                                        <input id="JMA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="NIED">
+                                    <span>防災科学技術研究所 (NIED)</span>
+                                    <label class="switch">
+                                        <input id="NIED" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="KMA">
+                                    <span>기상청 (KMA)</span>
+                                    <label class="switch">
+                                        <input id="KMA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="SCDZJ">
+                                    <span>四川省地震局 (SCDZJ)</span>
+                                    <label class="switch">
+                                        <input id="SCDZJ" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item-content setting-show-window">
+                            <span class="setting-item-title">顯示視窗</span>
+                            <div class="setting-window">
+                                <div class="setting-eew">
+                                    <span>地震預警</span>
+                                    <label class="switch">
+                                        <input id="eew" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="setting-report">
+                                    <span>地震報告</span>
+                                    <label class="switch">
+                                        <input id="report" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="setting-detect">
+                                    <span>檢知</span>
+                                    <label class="switch">
+                                        <input id="detect" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="setting-realtime-intensity">
+                                    <span>近即時震度</span>
+                                    <label class="switch">
+                                        <input id="realtime-intensity" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item-content setting-trem">
+                            <span class="setting-item-title">TREM EEW</span>
+                            <div class="setting-trem-eew">
+                                <div class="setting-take-trem-eew">
+                                    <span>接收TREM EEW</span>
+                                    <label class="switch">
+                                        <input id="take-trem-eew" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="setting-test">
+                                    <span>---</span>
+                                    <label class="switch">
+                                        <input id="test" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
