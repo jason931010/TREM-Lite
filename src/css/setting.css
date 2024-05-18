@@ -48,6 +48,7 @@ body {
     font-feature-settings: "liga";
 }
 
+/**滾桿外層label**/
 .switch {
     display: inline-block;
     width: 45px;
@@ -56,10 +57,7 @@ body {
     left: 84vw;
 }
 
-.switch input {
-    display: none;
-}
-
+/**滾桿容器**/
 .slider {
     position: absolute;
     cursor: pointer;
@@ -71,6 +69,7 @@ body {
     transition: .4s;
 }
 
+/**滾桿球**/
 .slider.round {
     border-radius: 20px;
 
@@ -87,7 +86,13 @@ body {
     }
 }
 
-input:checked+.slider {
+/**滾桿輸入框**/
+.switch input {
+    display: none;
+}
+
+/**滾桿輸入框選中時**/
+.switch input:checked+.slider {
     background-color: #1bd337;
     box-shadow: inset 0 0 3px rgb(0 0 0 /40%);
 
@@ -138,6 +143,11 @@ input:checked+.slider {
     cursor: pointer;
 }
 
+/**左邊按鈕選中**/
+.button.on {
+    background: rgb(50 62 91);
+}
+
 /**左邊按鈕span**/
 .button span {
     font-size: 16px;
@@ -155,7 +165,7 @@ input:checked+.slider {
 }
 
 /**重設按鈕**/
-.setting-reset {
+.setting-reset-btn {
     border-radius: 25px;
     border: 1px solid rgb(45 52 70 / 0%);
     background: rgb(45 52 70 / 61%);
@@ -202,6 +212,16 @@ input:checked+.slider {
     flex: 1;
 }
 
+/**右邊頁面內容器**/
+.setting-options-page {
+    display: none;
+}
+
+/**右邊頁面內容器被選中**/
+.setting-options-page.active {
+    display: flex;
+}
+
 /**右邊頁面內選項容器**/
 .setting-item-wrapper {
     position: absolute;
@@ -230,40 +250,28 @@ input:checked+.slider {
 }
 
 /**選項標題**/
-.setting-eew-agencies span,
-.setting-window span,
-.setting-trem-eew span,
-.setting-show-fault span,
-.setting-extended-info-wrapper span {
+.setting-option span {
     font-size: 15px;
     font-weight: normal;
 }
 
 /**選項外層容器**/
-.setting-eew-source span,
-.setting-show-window span,
-.setting-trem span,
-.setting-extended-info span {
+.setting-item-title {
     font-size: 17px;
     font-weight: 500;
 }
 
 /**選項內層容器**/
-.setting-eew-agencies,
-.setting-window,
-.setting-trem-eew,
-.setting-show-fault,
-.setting-extended-info-wrapper {
+.setting-option {
     display: grid;
     background-color: #0000003b;
     border-radius: 10px;
-    margin-top: 1vw;
+    margin-top: 3vh;
 }
 
+
 /**選項**/
-.setting-window div,
-.setting-trem-eew div,
-.setting-show-fault div {
+.setting-item-content div div:not(.select-items) {
     padding: 13px;
     align-content: center;
     justify-content: unset;
@@ -275,43 +283,10 @@ input:checked+.slider {
     }
 }
 
-
-.setting-eew-agencies div {
-    padding: 13px;
-    align-content: center;
-    justify-content: unset;
-    display: grid;
-
-    &:not(:last-child) {
-        border-bottom: 1px solid black;
-        border-color: rgb(255 255 255 / 5%);
-    }
-}
-
-#version,
-#UUID {
-    font-size: 15px;
-}
-
-.setting-extended-info-wrapper div {
-    padding: 13px;
-    align-content: center;
-    justify-content: unset;
-    display: grid;
-
-    &:not(:last-child) {
-        border-bottom: 1px solid black;
-        border-color: rgb(255 255 255 / 5%);
-    }
-}
-
-.setting-extended-info-content ul {
-    list-style-type: square;
-    margin: 0;
-}
-
+/**選項文字**/
 .setting-item-content div span {
     font-weight: 600;
+    width: 35vw;
 }
 
 /**description**/
@@ -325,7 +300,75 @@ input:checked+.slider {
     padding-left: .8vw;
 }
 
-/**上方最小化、關閉**/
+.extended-info {
+    color: #ff5656;
+    align-items: center;
+}
+
+.extended-info .material-symbols-rounded {
+    border-bottom: unset !important;
+    border-color: unset !important;
+    padding: 5px 5px 5px 5px;
+}
+
+.extended .setting-option {
+    display: inline-grid;
+}
+
+.special-text {
+    color: #ffc756;
+}
+
+.general .setting-option .selected-btn {
+    font-size: 25px;
+    width: 45px;
+    height: 26px;
+    position: sticky;
+    left: 84vw;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.current-city,
+.current-town {
+    width: auto !important;
+}
+
+.location {
+    cursor: pointer;
+}
+
+
+/**關於頁面**/
+.setting-version,
+.setting-uuid {
+    flex-direction: column;
+}
+
+/**版本號、UUID**/
+#version,
+#uuid {
+    font-size: 15px;
+    font-weight: 100;
+}
+
+.setting-info div div {
+    flex-direction: column;
+    padding: 10px;
+}
+
+/**貢獻者ul**/
+.contributor ul {
+    margin: 0;
+}
+
+li {
+    list-style-type: square;
+}
+
+/**上方視窗操作**/
 .window-operate {
     display: flex;
     justify-content: end;
@@ -334,12 +377,14 @@ input:checked+.slider {
     right: 1rem;
 }
 
+/**縮小icon**/
 .minimize .report-detail-field-icon.material-symbols-rounded {
     position: relative;
     bottom: .3rem;
     left: .2rem;
 }
 
+/**關閉icon**/
 .close .report-detail-field-icon.material-symbols-rounded {
     font-size: 20px;
     position: relative;
@@ -347,6 +392,7 @@ input:checked+.slider {
     top: 0.30rem;
 }
 
+/**關閉、縮小按鈕**/
 .minimize,
 .close {
     border-radius: 30px;
@@ -360,4 +406,80 @@ input:checked+.slider {
 
 .window-operate .btn {
     cursor: pointer;
+}
+
+
+
+/**下拉菜單**/
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 10em;
+}
+
+.custom-select {
+    display: none;
+}
+
+.select-selected {
+    background-color: #00000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+    border-bottom: unset !important;
+    border-color: unset !important;
+
+    &:after {
+        content: '';
+        display: inline-block;
+        width: 0.5em;
+        height: 0.5em;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        margin-left: 3.5rem;
+        margin-bottom: .2rem;
+        transition: transform 0.2s;
+    }
+}
+
+.select-hide {
+    display: none !important;
+}
+
+.select-selected.select-arrow-active::after {
+    transform: rotate(-135deg);
+}
+
+.select-items {
+    position: absolute;
+    background-color: #000000c9;
+    color: white;
+    border-radius: 5px;
+    width: 8rem;
+    z-index: 99;
+    max-height: 10em;
+    overflow-y: auto;
+    padding: 13px;
+    margin-top: 3.1rem;
+    align-content: center;
+    justify-content: unset;
+    display: flow;
+}
+
+.select-items div {
+    color: white;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    user-select: none;
+    justify-content: center !important;
+}
+
+.select-items div:hover,
+.same-as-selected {
+    background-color: rgb(255 255 255 / 6%);
 }
