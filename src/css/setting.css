@@ -10,7 +10,7 @@ body {
     --background-variant-hsl: 0deg 0% 16%;
     /*background: #ffffff00;*/
     background: url(test_bg.png) 38% 53% no-repeat;
-    background-size: 244vw;
+    background-size: 500vw;
 }
 
 ::-webkit-scrollbar {
@@ -80,7 +80,7 @@ body {
         height: 20px;
         width: 20px;
         left: .2rem;
-        bottom: 0.15rem;
+        bottom: 0.20rem;
         background-color: white;
         transition: .4s;
         border-radius: 15px;
@@ -157,7 +157,7 @@ input:checked+.slider {
 /**重設按鈕**/
 .setting-reset {
     border-radius: 25px;
-    border: 1px solid rgb(45 52 70 / 61%);
+    border: 1px solid rgb(45 52 70 / 0%);
     background: rgb(45 52 70 / 61%);
     color: #fff;
     font-size: 14px;
@@ -211,7 +211,7 @@ input:checked+.slider {
     gap: 4px;
     overflow-y: hidden;
     height: 84vh;
-    padding-bottom: 1.5vw;
+    padding-bottom: 1.5rem;
 
     &:hover {
         overflow-y: auto;
@@ -232,7 +232,9 @@ input:checked+.slider {
 /**選項標題**/
 .setting-eew-agencies span,
 .setting-window span,
-.setting-trem-eew span {
+.setting-trem-eew span,
+.setting-show-fault span,
+.setting-extended-info-wrapper span {
     font-size: 15px;
     font-weight: normal;
 }
@@ -240,7 +242,8 @@ input:checked+.slider {
 /**選項外層容器**/
 .setting-eew-source span,
 .setting-show-window span,
-.setting-trem span {
+.setting-trem span,
+.setting-extended-info span {
     font-size: 17px;
     font-weight: 500;
 }
@@ -248,7 +251,9 @@ input:checked+.slider {
 /**選項內層容器**/
 .setting-eew-agencies,
 .setting-window,
-.setting-trem-eew {
+.setting-trem-eew,
+.setting-show-fault,
+.setting-extended-info-wrapper {
     display: grid;
     background-color: #0000003b;
     border-radius: 10px;
@@ -256,21 +261,68 @@ input:checked+.slider {
 }
 
 /**選項**/
-.setting-eew-agencies div,
 .setting-window div,
-.setting-trem-eew div {
+.setting-trem-eew div,
+.setting-show-fault div {
     padding: 13px;
+    align-content: center;
+    justify-content: unset;
+    display: flex;
 
     &:not(:last-child) {
-        display: flex;
         border-bottom: 1px solid black;
         border-color: rgb(255 255 255 / 5%);
-        padding-bottom: 10px;
     }
+}
+
+
+.setting-eew-agencies div {
+    padding: 13px;
+    align-content: center;
+    justify-content: unset;
+    display: grid;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid black;
+        border-color: rgb(255 255 255 / 5%);
+    }
+}
+
+#version,
+#UUID {
+    font-size: 15px;
+}
+
+.setting-extended-info-wrapper div {
+    padding: 13px;
+    align-content: center;
+    justify-content: unset;
+    display: grid;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid black;
+        border-color: rgb(255 255 255 / 5%);
+    }
+}
+
+.setting-extended-info-content ul {
+    list-style-type: square;
+    margin: 0;
 }
 
 .setting-item-content div span {
     font-weight: 600;
+}
+
+/**description**/
+.setting-item-content .description {
+    position: relative;
+    top: .2rem;
+    margin-left: .2rem;
+    font-weight: 100 !important;
+    font-size: 14px !important;
+    display: flex;
+    padding-left: .8vw;
 }
 
 /**上方最小化、關閉**/

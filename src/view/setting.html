@@ -35,12 +35,15 @@
                 </div>
 
                 <!--一般-->
-                <div class="setting-options-page">
+                <div class="setting-options-page general" style="display:none;">
                     <div class="setting-page-title">一般</div>
 
                     <div class="setting-item-wrapper">
                         <div class="setting-item-content setting-eew-source">
                             <span class="setting-item-title">地震預警來源</span>
+                            <span class="description">
+                                程式接收地震預警的來源。
+                            </span>
                             <div class="setting-eew-agencies">
                                 <div class="CWA">
                                     <span>中央氣象署 (CWA)</span>
@@ -82,6 +85,9 @@
 
                         <div class="setting-item-content setting-show-window">
                             <span class="setting-item-title">顯示視窗</span>
+                            <span class="description">
+                                程式自動跳窗時機。
+                            </span>
                             <div class="setting-window">
                                 <div class="setting-eew">
                                     <span>地震預警</span>
@@ -116,6 +122,9 @@
 
                         <div class="setting-item-content setting-trem">
                             <span class="setting-item-title">TREM EEW</span>
+                            <span class="description">
+                                TREM-EEW是利用TREM-Net觀測網計算的地震預警訊息，即時資料為非公開(付費功能)，一般用戶在開啟後可在重播(震後5分鐘)中看到效果。
+                            </span>
                             <div class="setting-trem-eew">
                                 <div class="setting-take-trem-eew">
                                     <span>接收TREM EEW</span>
@@ -135,6 +144,244 @@
                         </div>
                     </div>
                 </div>
+
+                <!--圖形-->
+                <div class="setting-options-page graphics" style="display:none;">
+                    <div class="setting-page-title">圖形</div>
+
+                    <div class="setting-item-wrapper">
+                        <div class="setting-item-content setting-eew-source">
+                            <span class="setting-item-title">地圖顯示效果</span>
+                            <span class="description">設定在地圖上的顯示效果。</span>
+                            <div class="setting-eew-agencies">
+                                <div class="CWA">
+                                    <span>中央氣象署 (CWA)</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item-content setting-eew-source">
+                            <span class="setting-item-title">地圖自動縮放</span>
+                            <span class="description">預設地圖自動縮放為啟用狀態。</span>
+                            <div class="setting-eew-agencies">
+                                <div class="CWA">
+                                    <span>禁用地圖自動縮放</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item-content setting-eew-source">
+                            <span class="setting-item-title">顯示斷層</span>
+                            <span class="description">在地圖上顯示臺灣本島斷層分布。</span>
+                            <div class="setting-show-fault">
+                                <div class="CWA">
+                                    <span>顯示斷層</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--音效-->
+                <div class="setting-options-page sound-effects" style="display:none;">
+                    <div class="setting-page-title">音效</div>
+
+                    <div class="setting-item-wrapper">
+                        <div class="setting-item-content setting-eew-source">
+                            <span class="setting-item-title">預警播報</span>
+                            <span class="description">地震發生時播報所在地預估震度以及地震波抵達剩餘秒數。</span>
+                            <div class="setting-eew-agencies">
+                                <div class="CWA">
+                                    <span>咚咚咚音效(僅在有倒數情況下生效)</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item-content setting-eew-source">
+                            <span class="setting-item-title">音效列表</span>
+                            <span class="description">開啟或關閉特定的音效</span>
+                            <div class="setting-eew-agencies">
+                                <div class="CWA">
+                                    <span>EEW（收到地震預警時播放）</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="CWA">
+                                    <span>EEW2（最大預估震度5弱以上播放）</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="CWA">
+                                    <span>P-Alert（收到近即時震度時播放）</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="CWA">
+                                    <span>PGA1（PGA > 8gal時播放）</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="CWA">
+                                    <span>PGA2（PGA > 200gal時播放）</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="CWA">
+                                    <span>Report（收到地震報告時播放）</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="CWA">
+                                    <span>Shindo0（地震檢知震度0級以上播放）</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="CWA">
+                                    <span>Shindo1（地震檢知震度2級以上播放）</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="CWA">
+                                    <span>Shindo2（地震檢知震度4級以上播放）</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                                <div class="CWA">
+                                    <span>Update（地震預警更正時播放）</span>
+                                    <label class="switch">
+                                        <input id="CWA" type="checkbox">
+                                        <div class="slider round"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--擴充-->
+                <div class="setting-options-page extended" style="display:none;">
+                    <div class="setting-page-title">擴充</div>
+
+                    <div class="setting-item-wrapper">
+                        <div class="setting-item-content setting-eew-source">
+                            <span class="setting-item-title">擴充列表</span>
+                            <span class="description">選擇啟用的擴充，擴充將在程式啟動時載入。</span>
+                            <div class="setting-eew-agencies">
+                                <div class="setting-extended-info">
+                                    <span>使用來源不明或無法信任的擴充可能危及您的個人資訊安全，請謹慎使用。</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--關於-->
+                <div class="setting-options-page info">
+                    <div class="setting-page-title">擴充</div>
+
+                    <div class="setting-item-wrapper">
+                        <div class="setting-item-content setting-eew-source">
+                            <span class="setting-item-title">關於TREAM Lite</span>
+                            <span
+                                class="description">TREM-Lite是一款開源地震速報軟體，提供給您即時的地震資訊，利用自製的測站，顯示各地的即時震度，在地震發生的第一時間取得各管道發布的強震即時警報訊息。</span>
+                            <div class="setting-eew-agencies">
+                                <div class="setting-extended-info">
+                                    <span>版本</span>
+                                    <span id="version">1.10.10</span>
+                                </div>
+                                <div class="setting-extended-info">
+                                    <span>UUID</span>
+                                    <span id="UUID">undefined</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item-content setting-eew-source">
+                            <span class="setting-item-title">資料來源</span>
+                            <span class="description">地震預警</span>
+                            <span class="description"></span>
+                            <div class="setting-eew-agencies">
+                                <div class="setting-extended-info">
+                                    <div>
+                                        <ul>
+                                            <li><span>交通部中央氣象署 (CWA)</span></li>
+                                            <li><span>日本気象庁 (JMA)</span></li>
+                                            <li><span>防災科研 (NIED)</span></li>
+                                            <li><span>中国四川省地震局 (SCDZJ)</span></li>
+                                            <li><span>기상청 (KMA)</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="description">震度</span>
+                            <div class="setting-eew-agencies">
+                                <div class="setting-extended-info">
+                                    <div>
+                                        <ul>
+                                            <li><span>中央研究院 (SINICA)</span></li>
+                                            <li><span>臺灣即時地震監測 (TREM)</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item-content setting-eew-source">
+                            <span class="setting-item-title">貢獻者</span>
+                            <span class="description">感謝以下的貢獻者們，因為有了他們的貢獻， TREM Lite 才得以實現。</span>
+                            <span class="description"></span>
+                            <div class="setting-eew-agencies">
+                                <div class="setting-extended-info">
+                                    <div>
+                                        <ul>
+                                            <li><span>whes1015（程式開發）</span></li>
+                                            <li><span>yayacat（程式開發）</span></li>
+                                            <li><span>Kamiya（UI改良）</span></li>
+                                            <li><span>JQuake（音效）</span></li>
+                                            <li><span>NYJ36（翻譯）</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
