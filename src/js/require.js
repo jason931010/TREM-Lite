@@ -26,3 +26,13 @@ constant.BOX_GEOJSON.features.forEach(feature => feature.properties = {
 const replayPath = path.join(app.getPath("userData"), "replay");
 if (!fs.existsSync(replayPath)) fs.mkdirSync(replayPath);
 variable.replay_list = fs.readdirSync(replayPath);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navSettingsPanel = document.getElementById("nav-settings-panel");
+
+  navSettingsPanel.addEventListener("click", () => {
+    console.log(true);
+    ipcRenderer.send("openChildWindow");
+  });
+
+});
