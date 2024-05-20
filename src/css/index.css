@@ -693,7 +693,7 @@ body {
   border-radius: 5px;
   color: red;
   font-size: 15px;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .icon {
@@ -847,6 +847,7 @@ body:has(#report-panel.show) .pga_dot {
 
 /**地震速報、海嘯警報下方警語**/
 
+/*廢案不使用*/
 .warning-alert {
   left: 50%;
   display: flex;
@@ -857,6 +858,7 @@ body:has(#report-panel.show) .pga_dot {
   top: calc(100vh - 0.5rem);
   transform: translate(-50%, -100%);
   pointer-events: none;
+  display: none;
 }
 
 .warning-alert .tsunami-warning {
@@ -1249,108 +1251,4 @@ body:has(#report-panel.show) .pga_dot {
   color: #313131;
   background-color: #FFC800;
   box-sizing: border-box;
-}
-
-/**地震波同心圓**/
-.earthquake-waves {
-  position: relative;
-  width: 800px;
-  height: 800px;
-  left: 35vw;
-  top: -51VW;
-}
-
-.wave {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-
-.wave-1 {
-  width: 100px;
-  height: 100px;
-  border: 2px solid #fff;
-}
-
-.wave-2 {
-  width: 200px;
-  height: 200px;
-  border: 2px solid #fff;
-}
-
-.wave-3 {
-  width: 300px;
-  height: 300px;
-  border: 2px solid #fff;
-}
-
-.wave-4 {
-  width: 400px;
-  height: 400px;
-  border: 2px solid #fff;
-}
-
-.wave-5 {
-  width: 500px;
-  height: 500px;
-  border: 2px solid #fff;
-}
-
-.wave-6 {
-  width: 600px;
-  height: 600px;
-  border: 2px solid #fff;
-}
-
-.epicenter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: url(epic-center.png) center center;
-  background-size: contain;
-}
-
-.wave-label {
-  position: absolute;
-  color: #fff;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.wave-1 .wave-label {
-  top: -20%;
-  left: 50%;
-}
-
-.wave-2 .wave-label {
-  top: -10%;
-  left: 50%;
-}
-
-.wave-3 .wave-label {
-  top: -7%;
-  left: 50%;
-}
-
-.wave-4 .wave-label {
-  top: -6%;
-  left: 50%;
-}
-
-.wave-5 .wave-label {
-  top: -5%;
-  left: 50%;
-}
-
-.wave-6 .wave-label {
-  top: -4%;
-  left: 50%;
 }
