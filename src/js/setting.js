@@ -47,10 +47,7 @@ const TownItems = SelectWrapper.querySelector(".town");
 
 // 重置按鈕點擊事件
 ResetBtn.addEventListener("click", () => {
-  ResetConfirmWrapper.style.display = "block";
-  requestAnimationFrame(() => {
-    ResetConfirmWrapper.style.opacity = "1";
-  });
+  ResetConfirmWrapper.style.bottom = "0";
 });
 
 document.addEventListener("click", (event) => {
@@ -59,18 +56,17 @@ document.addEventListener("click", (event) => {
   const isClickInsideResetWrapper = resetWrapper.contains(target);
   const isResetBtn = target === ResetBtn || ResetBtn.contains(target);
   if (!isClickInsideResetWrapper && !isResetBtn)
-    resetWrapper.style.display = "none";
-
+    resetWrapper.style.bottom = "-100%";
 });
 
 // 確定重置按鈕點擊事件
 ResetSure.addEventListener("click", () => {
-  ResetConfirmWrapper.style.display = "none";
+  ResetConfirmWrapper.style.bottom = "-100%";
 });
 
 // 取消重置按鈕點擊事件
 ResetCancel.addEventListener("click", () => {
-  ResetConfirmWrapper.style.display = "none";
+  ResetConfirmWrapper.style.bottom = "-100%";
 });
 
 // 設定按鈕點擊事件
@@ -184,6 +180,15 @@ TownItems.addEventListener("click", (event) => {
 addSelectEvent(localItems, localSelect);
 addSelectEvent(CityItems, CitySelect);
 addSelectEvent(TownItems, TownSelect);
+
+
+// 設定頁面背景透明度滑塊
+const blurRange = document.getElementById("blurRange");
+
+blurRange.addEventListener("input", () => {
+  const blurValue = blurRange.value + "px";
+  SettingWrapper.style.backdropFilter = `blur(${blurValue})`;
+});
 
 // 儲存user選擇的城市和城鎮到storage儲存
 const saveSelectionToLocalStorage = (city, town) => {
