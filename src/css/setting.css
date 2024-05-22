@@ -500,18 +500,37 @@ li {
     align-items: center;
 }
 
-.select-items div {
+.local div,
+.city div,
+.town div,
+.station div {
     color: white;
-    padding: 0.5em 1em;
     cursor: pointer;
     user-select: none;
     justify-content: center !important;
     scroll-snap-align: start;
+    align-items: center;
+    text-align: center;
 }
 
-.select-items div:hover,
+.local div:hover,
+.city div:hover,
+.town div:hover,
+.station div:hover,
 .select-option-selected {
     background-color: rgb(255 255 255 / 6%);
+}
+
+
+
+.station span:first-child {
+    width: auto !important;
+    color: #ffc756;
+    margin-right: 4px;
+}
+
+.select-items.station {
+    width: 100%;
 }
 
 .select-arrow-active {
@@ -528,4 +547,53 @@ li {
 .select-wrapper.select-show {
     height: 1000px;
     max-height: 8rem;
+}
+
+.select-wrapper.select-show-big {
+    height: 1000px;
+    max-height: 14rem;
+}
+
+.select-items.station {
+    max-height: 14.4em;
+}
+
+.slider-container {
+    position: relative;
+    width: 10vw;
+    height: 5px;
+    background-color: #d3d3d3;
+    border-radius: 5px;
+    margin: 20px 0;
+    padding: 0 !important;
+}
+
+.slider-track {
+    height: 100%;
+    background-color: #0073fc;
+    border-radius: 5px;
+    padding: 0 !important;
+}
+
+.slider-thumb {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    background-color: white;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    padding: 10px !important;
+}
+
+.slider-wrapper {
+    padding: 0 !important;
+    right: 0;
+    width: 6vw;
+    height: 26px;
+    position: sticky;
+    left: 69vw;
+    transform: translate(-7%, 0%);
+    align-items: center;
 }

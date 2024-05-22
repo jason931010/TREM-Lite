@@ -28,22 +28,22 @@ document.querySelectorAll(".setting-buttons .button").forEach(button => {
 });
 
 const SettingWrapper = document.querySelector(".setting-wrapper");
-const SelectWrapper = document.querySelector(".select-wrapper");
 const SettingBtn = document.querySelector("#nav-settings-panel");
 const Back = document.querySelector(".back_to_home");
-
 const ResetBtn = document.querySelector(".setting-reset-btn");
 const ResetConfirmWrapper = document.querySelector(".reset-confirm-wrapper");
 const ResetCancel = document.querySelector(".reset-cancel");
 const ResetSure = document.querySelector(".reset-sure");
 
-const LocationWrapper = document.querySelector(".location");
-const localSelect = SelectWrapper.querySelector(".current-local");
-const localItems = SelectWrapper.querySelector(".local");
-const CitySelect = SelectWrapper.querySelector(".current-city");
-const CityItems = SelectWrapper.querySelector(".city");
-const TownSelect = SelectWrapper.querySelector(".current-town");
-const TownItems = SelectWrapper.querySelector(".town");
+const LocationWrapper = document.querySelector(".usr-location");
+const Location = LocationWrapper.querySelector(".location");
+const LocationSelectWrapper = LocationWrapper.querySelector(".select-wrapper");
+const localSelect = LocationSelectWrapper.querySelector(".current-local");
+const localItems = LocationSelectWrapper.querySelector(".local");
+const CitySelect = LocationSelectWrapper.querySelector(".current-city");
+const CityItems = LocationSelectWrapper.querySelector(".city");
+const TownSelect = LocationSelectWrapper.querySelector(".current-town");
+const TownItems = LocationSelectWrapper.querySelector(".town");
 
 // 重置按鈕點擊事件
 ResetBtn.addEventListener("click", () => {
@@ -101,20 +101,21 @@ const cityToTowns = {
 };
 
 // 下拉選單點擊事件
-LocationWrapper.addEventListener("click", function() {
+Location.addEventListener("click", function() {
   const ArrowSpan = this.querySelector(".selected-btn");
   if (ArrowSpan.textContent.trim() === "keyboard_arrow_up")
     ArrowSpan.textContent = "keyboard_arrow_down";
   else
     ArrowSpan.textContent = "keyboard_arrow_up";
-  SelectWrapper.classList.toggle("select-show");
+  LocationSelectWrapper.classList.toggle("select-show");
 });
 
 
-// 通用點擊選擇事件
-const addSelectEvent = (itemsContainer, selectElement) => {
+// 點擊選擇事件
+const addLocationSelectEvent = (itemsContainer, selectElement) => {
   itemsContainer.addEventListener("click", (event) => {
-    const closestDiv = event.target.closest(".select-items > div");
+    const closestDiv = event.target.closest(".usr-location .select-items > div");
+    console.log(closestDiv);
     if (closestDiv) {
       const selectedText = closestDiv.textContent;
       selectElement.textContent = selectedText;
@@ -126,7 +127,7 @@ const addSelectEvent = (itemsContainer, selectElement) => {
 };
 
 // 更新目前選擇的city、town
-const updateSelectItems = (itemsContainer, items) => {
+const updateLocationSelectItems = (itemsContainer, items) => {
   itemsContainer.innerHTML = "";
   items.forEach(item => {
     const div = document.createElement("div");
@@ -143,23 +144,23 @@ for (const city in constant.REGION) {
 
 // local選單點擊事件
 localItems.addEventListener("click", (event) => {
-  const closestDiv = event.target.closest(".select-items > div");
+  const closestDiv = event.target.closest(".usr-location .select-items > div");
   if (closestDiv) {
     const selectedLocal = closestDiv.textContent;
     localSelect.textContent = selectedLocal;
-    updateSelectItems(CityItems, localArr[selectedLocal]);
-    updateSelectItems(TownItems, []);
+    updateLocationSelectItems(CityItems, localArr[selectedLocal]);
+    updateLocationSelectItems(TownItems, []);
     saveSelectionToLocalStorage("", "");
   }
 });
 
 // city選單點擊事件
 CityItems.addEventListener("click", (event) => {
-  const closestDiv = event.target.closest(".select-items > div");
+  const closestDiv = event.target.closest(".usr-location .select-items > div");
   if (closestDiv) {
     const selectedCity = closestDiv.textContent;
     CitySelect.textContent = selectedCity;
-    updateSelectItems(TownItems, cityToTowns[selectedCity] || []);
+    updateLocationSelectItems(TownItems, cityToTowns[selectedCity] || []);
     TownSelect.textContent = "town";
     saveSelectionToLocalStorage(selectedCity, "");
   }
@@ -167,7 +168,7 @@ CityItems.addEventListener("click", (event) => {
 
 // town選單點擊事件
 TownItems.addEventListener("click", (event) => {
-  const closestDiv = event.target.closest(".select-items > div");
+  const closestDiv = event.target.closest(".usr-location .select-items > div");
   if (closestDiv) {
     const selectedTown = closestDiv.textContent;
     TownSelect.textContent = selectedTown;
@@ -177,20 +178,46 @@ TownItems.addEventListener("click", (event) => {
   }
 });
 
-addSelectEvent(localItems, localSelect);
-addSelectEvent(CityItems, CitySelect);
-addSelectEvent(TownItems, TownSelect);
-
+addLocationSelectEvent(localItems, localSelect);
+addLocationSelectEvent(CityItems, CitySelect);
+addLocationSelectEvent(TownItems, TownSelect);
 
 // 設定頁面背景透明度滑塊
-const blurRange = document.getElementById("blurRange");
+const settingWrapper = document.querySelector(".setting-wrapper");
+const sliderContainer = document.querySelector(".slider-container");
+const sliderTrack = document.querySelector(".slider-track");
+const sliderThumb = document.querySelector(".slider-thumb");
 
-blurRange.addEventListener("input", () => {
-  const blurValue = blurRange.value + "px";
-  SettingWrapper.style.backdropFilter = `blur(${blurValue})`;
+let isDragging = false;
+
+sliderThumb.addEventListener("mousedown", () => {
+  isDragging = true;
 });
 
-// 儲存user選擇的城市和城鎮到storage儲存
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+});
+
+document.addEventListener("mousemove", (event) => {
+  if (isDragging) {
+    const containerRect = sliderContainer.getBoundingClientRect();
+    let newLeft = event.clientX - containerRect.left;
+
+    if (newLeft < 0) newLeft = 0;
+    else if (newLeft > containerRect.width) newLeft = containerRect.width;
+
+    const percentage = (newLeft / containerRect.width) * 100;
+    const blurValue = (newLeft / containerRect.width) * 20;
+
+    sliderThumb.style.left = `${percentage}%`;
+    sliderTrack.style.width = `${percentage}%`;
+    settingWrapper.style.backdropFilter = `blur(${blurValue}px)`;
+
+    console.log("Slider value:", percentage);
+  }
+});
+
+// 儲存user選擇的城市和城鎮到storage
 const saveSelectionToLocalStorage = (city, town) => {
   localStorage.setItem("current-city", city);
   localStorage.setItem("current-town", town);
@@ -215,3 +242,104 @@ const renderSelectionFromLocalStorage = () => {
 
 // 渲染user之前保存的選擇
 window.addEventListener("DOMContentLoaded", renderSelectionFromLocalStorage);
+
+const StationWrapper = document.querySelector(".realtime-station");
+const StationLocation = StationWrapper.querySelector(".location");
+const StationSelectWrapper = StationWrapper.querySelector(".select-wrapper");
+const StationSelect = StationSelectWrapper.querySelector(".current-station");
+const StationItems = StationSelectWrapper.querySelector(".station");
+
+// 取得即時測站
+function realtime_station() {
+  let retryCount = 0;
+  const retryClock = setInterval(async () => {
+    retryCount++;
+
+    try {
+      const res = await fetchData(`${API_url()}v1/trem/station`);
+      const data = await res.json();
+
+      if (data) {
+        StationItems.innerHTML = "";
+        const stationsArray = Object.keys(data).map(station => {
+          const info = data[station].info[data[station].info.length - 1];
+          let loc = region_code_to_string(constant.REGION, info.code);
+
+          if (!loc)
+            if (station === "13379360")
+              loc = "重慶市北碚區";
+            else if (station === "7735548")
+              loc = "南陽州市和道邑";
+            else
+              loc = "未知區域";
+          else
+            loc = `${loc.city}${loc.town}`;
+
+          return {
+            name : station,
+            net  : data[station].net,
+            loc  : loc,
+            code : info.code,
+          };
+        });
+
+        stationsArray.sort((b, a) => a.loc.localeCompare(b.loc));
+
+        stationsArray.forEach(station => {
+          const stationDiv = document.createElement("div");
+
+          const netSpan = document.createElement("span");
+          netSpan.textContent = station.net;
+
+          const infoSpan = document.createElement("span");
+          infoSpan.textContent = `${station.code}-${station.name} ${station.loc}`;
+
+          stationDiv.appendChild(netSpan);
+          stationDiv.appendChild(infoSpan);
+
+          StationItems.appendChild(stationDiv);
+        });
+
+        clearInterval(retryClock);
+      }
+    } catch (err) {
+      logger.error(`[Fetch] ${err} (Try #${retryCount})`);
+    }
+  }, 500);
+}
+
+realtime_station();
+
+// 即時測站-下拉選單點擊事件
+StationLocation.addEventListener("click", function() {
+  const ArrowSpan = this.querySelector(".selected-btn");
+  if (ArrowSpan.textContent.trim() === "keyboard_arrow_up")
+    ArrowSpan.textContent = "keyboard_arrow_down";
+  else
+    ArrowSpan.textContent = "keyboard_arrow_up";
+  StationSelectWrapper.classList.toggle("select-show-big");
+});
+
+// 即時測站-點擊選擇事件
+const addStationSelectEvent = (itemsContainer) => {
+  itemsContainer.addEventListener("click", (event) => {
+    const closestDiv = event.target.closest(".realtime-station .select-items > div");
+    if (closestDiv) {
+      const selectedStation = closestDiv.textContent;
+
+      itemsContainer.querySelectorAll("div").forEach(div => div.classList.remove("select-option-selected"));
+      closestDiv.classList.add("select-option-selected");
+
+      const regex = /^(MS-Net|SE-Net)(\d+-\d+.*)$/;
+      const match = selectedStation.match(regex);
+      if (match) {
+        const Net = match[1];
+        const StationInfo = match[2];
+        StationSelect.textContent = `${Net} ${StationInfo}`;
+        document.querySelector(".current-station").textContent = `${Net} ${StationInfo}`;
+      }
+    }
+  });
+};
+
+addStationSelectEvent(StationItems);

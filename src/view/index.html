@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../css/pga.css" />
     <link rel="stylesheet" href="../css/font.css" />
     <link rel="stylesheet" href="../css/setting.css">
-    <link rel="stylesheet" href="../css/range.css">
 </head>
 
 <body>
@@ -561,7 +560,7 @@
                             <span class="description">
                                 設定所在地可以在地震發生時預估你所在區域的地震震度。
                             </span>
-                            <div class="setting-option">
+                            <div class="setting-option usr-location">
                                 <div class="location">
                                     <span class="current-city">未知</span>
                                     <span class="separate">-</span>
@@ -570,7 +569,6 @@
                                         keyboard_arrow_down
                                     </span>
                                 </div>
-
                                 <div class="select-wrapper">
                                     <div class="select-selected current-local" style="display:none;">選擇地區</div>
                                     <div class="select-items local">
@@ -587,7 +585,6 @@
                                     <div class="select-selected current-town" style="display:none;">選擇城鎮</div>
                                     <div class="select-items town"></div>
                                 </div>
-
                             </div>
                         </div>
 
@@ -596,13 +593,16 @@
                             <span class="description">
                                 顯示於主畫面左上方的即時測站。
                             </span>
-                            <div class="setting-option">
-                                <div>
-                                    <span>中央氣象署 (CWA)</span>
-                                    <label class="switch">
-                                        <input id="CWA" type="checkbox">
-                                        <div class="slider round"></div>
-                                    </label>
+                            <div class="setting-option realtime-station">
+                                <div class="location">
+                                    <span class="current-station">未知</span>
+                                    <span class="selected-btn report-detail-field-icon material-symbols-rounded">
+                                        keyboard_arrow_down
+                                    </span>
+                                </div>
+                                <div class="select-wrapper">
+                                    <div class="select-selected current-station" style="display:none;">選擇測站</div>
+                                    <div class="select-items station"></div>
                                 </div>
                             </div>
                         </div>
@@ -749,8 +749,11 @@
                                 </div>
                                 <div>
                                     <span>設定頁面背景透明度</span>
-                                    <div class="setting-range-content">
-                                        <input type="range" min="0" max="50" value="20" id="blurRange">
+                                    <div class="slider-wrapper">
+                                        <div class="slider-container">
+                                            <div class="slider-track"></div>
+                                            <div class="slider-thumb"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
