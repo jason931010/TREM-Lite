@@ -38,7 +38,6 @@ const ResetSure = document.querySelector(".reset-sure");
 const LocationWrapper = document.querySelector(".usr-location");
 const Location = LocationWrapper.querySelector(".location");
 const LocationSelectWrapper = LocationWrapper.querySelector(".select-wrapper");
-const localSelect = LocationSelectWrapper.querySelector(".current-local");
 const localItems = LocationSelectWrapper.querySelector(".local");
 const CitySelect = LocationSelectWrapper.querySelector(".current-city");
 const CityItems = LocationSelectWrapper.querySelector(".city");
@@ -146,7 +145,6 @@ localItems.addEventListener("click", (event) => {
   const closestDiv = event.target.closest(".usr-location .select-items > div");
   if (closestDiv) {
     const selectedLocal = closestDiv.textContent;
-    localSelect.textContent = selectedLocal;
     updateLocationSelectItems(CityItems, localArr[selectedLocal]);
     updateLocationSelectItems(TownItems, []);
     saveSelectionToLocalStorage("", "", "");
@@ -177,7 +175,6 @@ TownItems.addEventListener("click", (event) => {
   }
 });
 
-addLocationSelectEvent(localItems, localSelect);
 addLocationSelectEvent(CityItems, CitySelect);
 addLocationSelectEvent(TownItems, TownSelect);
 
@@ -225,16 +222,20 @@ const saveSelectionToLocalStorage = (city, town, station) => {
 const getSelectionFromLocalStorage = () => {
   const city = localStorage.getItem("current-city");
   const town = localStorage.getItem("current-town");
-  return { city, town };
+  const station = localStorage.getItem("current-station");
+  return { city, town, station };
 };
 
 // 渲染user之前保存的選項到頁面
 const renderSelectionFromLocalStorage = () => {
-  const { city, town } = getSelectionFromLocalStorage();
-  if (town) {
-    TownSelect.textContent = town;
-    document.querySelector(".current-city").textContent = city;
-    document.querySelector(".current-town").textContent = town;
+  const { city, town, station } = getSelectionFromLocalStorage();
+  document.querySelector(".current-city").textContent = city;
+  document.querySelector(".current-town").textContent = town;
+
+  if (station) {
+    const current_station = document.querySelector(".current-station");
+    const station_Json = JSON.parse(localStorage.getItem("current-station"));
+    current_station.textContent = `${station_Json.net} ${station_Json.code}-${station_Json.name} ${station_Json.loc}`;
   }
 };
 
@@ -244,7 +245,6 @@ window.addEventListener("DOMContentLoaded", renderSelectionFromLocalStorage);
 const StationWrapper = document.querySelector(".realtime-station");
 const StationLocation = StationWrapper.querySelector(".location");
 const StationSelectWrapper = StationWrapper.querySelector(".select-wrapper");
-const StationLocalSelect = StationSelectWrapper.querySelector(".current-local");
 const StationLocalItems = StationSelectWrapper.querySelector(".local");
 const StationSelect = StationSelectWrapper.querySelector(".current-station");
 const StationItems = StationSelectWrapper.querySelector(".station");
@@ -297,6 +297,7 @@ async function realtime_station() {
 }
 realtime_station();
 
+// 渲染縣市元素
 function RenderStationRegion() {
   StationLocalItems.innerHTML = "";
 
@@ -333,6 +334,11 @@ function renderFilteredStations(stations) {
 
   stations.forEach(station => {
     const stationDiv = document.createElement("div");
+    stationDiv.setAttribute("data-net", station.net);
+    stationDiv.setAttribute("data-code", station.code);
+    stationDiv.setAttribute("data-name", station.name);
+    stationDiv.setAttribute("data-loc", station.loc);
+
     const netSpan = document.createElement("span");
     netSpan.textContent = station.net;
     netSpan.classList.add(station.net);
@@ -372,8 +378,15 @@ const addStationSelectEvent = (itemsContainer) => {
       if (match) {
         StationSelect.textContent = `${match[1]} ${match[2]}`;
         document.querySelector(".current-station").textContent = `${match[1]} ${match[2]}`;
-        saveSelectionToLocalStorage(getSelectionFromLocalStorage().city, getSelectionFromLocalStorage().town, `${match[1]} ${match[2]}`);
-        console.log(StationRegion);
+
+        const stationData = {
+          net  : closestDiv.getAttribute("data-net"),
+          code : closestDiv.getAttribute("data-code"),
+          name : closestDiv.getAttribute("data-name"),
+          loc  : closestDiv.getAttribute("data-loc"),
+        };
+
+        localStorage.setItem("current-station", JSON.stringify(stationData));
       }
     }
   });
