@@ -1,28 +1,16 @@
 /* eslint-disable no-undef */
 
-// 版本號
-const version = document.getElementById("version");
-version.textContent = "2.0.0";
-
-// UUID
-const uuid = document.getElementById("uuid");
-uuid.textContent = "undefined";
+// 版本號、UUID
+document.getElementById("version").textContent = "2.0.0";
+document.getElementById("uuid").textContent = "undefined";
 
 // 左側選單按鈕點擊
 document.querySelectorAll(".setting-buttons .button").forEach(button => {
   button.addEventListener("click", () => {
-    document.querySelectorAll(".setting-options-page").forEach(page => {
-      page.classList.remove("active");
-    });
+    document.querySelectorAll(".setting-options-page").forEach(page => page.classList.remove("active"));
+    document.querySelector(`.${button.getAttribute("for")}`).classList.add("active");
 
-    const targetPage = button.getAttribute("for");
-    document.querySelector(`.${targetPage}`).classList.add("active");
-
-
-    document.querySelectorAll(".setting-buttons .button").forEach(btn => {
-      btn.classList.remove("on");
-    });
-
+    document.querySelectorAll(".setting-buttons .button").forEach(btn => btn.classList.remove("on"));
     button.classList.add("on");
   });
 });
@@ -44,6 +32,21 @@ const CityItems = LocationSelectWrapper.querySelector(".city");
 const TownSelect = LocationSelectWrapper.querySelector(".current-town");
 const TownItems = LocationSelectWrapper.querySelector(".town");
 
+const localArr = {
+  "北部" : ["臺北市", "新北市", "基隆市", "新竹市", "桃園市", "新竹縣", "宜蘭縣"],
+  "中部" : ["臺中市", "苗栗縣", "彰化縣", "南投縣", "雲林縣"],
+  "南部" : ["高雄市", "臺南市", "嘉義市", "嘉義縣", "屏東縣", "澎湖縣"],
+  "東部" : ["花蓮縣", "臺東縣"],
+  "外島" : ["金門縣", "連江縣"],
+  "南韓" : ["南楊州市"],
+  "中國" : ["重慶市"],
+};
+
+const cityToTowns = {
+  "南楊州市" : ["和道邑"],
+  "重慶市"  : ["北碚區"],
+};
+
 // 重置按鈕點擊事件
 ResetBtn.addEventListener("click", () => {
   ResetConfirmWrapper.style.bottom = "0";
@@ -51,11 +54,9 @@ ResetBtn.addEventListener("click", () => {
 
 document.addEventListener("click", (event) => {
   const target = event.target;
-  const resetWrapper = document.querySelector(".reset-confirm-wrapper");
-  const isClickInsideResetWrapper = resetWrapper.contains(target);
-  const isResetBtn = target === ResetBtn || ResetBtn.contains(target);
-  if (!isClickInsideResetWrapper && !isResetBtn)
-    resetWrapper.style.bottom = "-100%";
+  if (!ResetConfirmWrapper.contains(target) && !ResetBtn.contains(target))
+    ResetConfirmWrapper.style.bottom = "-100%";
+
 });
 
 // 確定重置按鈕點擊事件
@@ -84,39 +85,20 @@ Back.addEventListener("click", () => {
   });
 });
 
-const localArr = {
-  "北部" : ["臺北市", "新北市", "基隆市", "新竹市", "桃園市", "新竹縣", "宜蘭縣"],
-  "中部" : ["臺中市", "苗栗縣", "彰化縣", "南投縣", "雲林縣"],
-  "南部" : ["高雄市", "臺南市", "嘉義市", "嘉義縣", "屏東縣", "澎湖縣"],
-  "東部" : ["花蓮縣", "臺東縣"],
-  "外島" : ["金門縣", "連江縣"],
-  "南韓" : ["南楊州市"],
-  "中國" : ["重慶市"],
-};
-
-const cityToTowns = {
-  "南楊州市" : ["和道邑"],
-  "重慶市"  : ["北碚區"],
-};
 
 // 下拉選單點擊事件
 Location.addEventListener("click", function() {
   const ArrowSpan = this.querySelector(".selected-btn");
-  if (ArrowSpan.textContent.trim() === "keyboard_arrow_up")
-    ArrowSpan.textContent = "keyboard_arrow_down";
-  else
-    ArrowSpan.textContent = "keyboard_arrow_up";
+  ArrowSpan.textContent = ArrowSpan.textContent.trim() === "keyboard_arrow_up" ? "keyboard_arrow_down" : "keyboard_arrow_up";
   LocationSelectWrapper.classList.toggle("select-show");
 });
-
 
 // 點擊選項事件
 const addLocationSelectEvent = (itemsContainer, selectElement) => {
   itemsContainer.addEventListener("click", (event) => {
     const closestDiv = event.target.closest(".usr-location .select-items > div");
     if (closestDiv) {
-      const selectedText = closestDiv.textContent;
-      selectElement.textContent = selectedText;
+      selectElement.textContent = closestDiv.textContent;
 
       itemsContainer.querySelectorAll("div").forEach(div => div.classList.remove("select-option-selected"));
       closestDiv.classList.add("select-option-selected");
@@ -124,7 +106,7 @@ const addLocationSelectEvent = (itemsContainer, selectElement) => {
   });
 };
 
-// 更新目前選項的city、town
+// 更新目前選項的 city、town
 const updateLocationSelectItems = (itemsContainer, items) => {
   itemsContainer.innerHTML = "";
   items.forEach(item => {
@@ -134,44 +116,40 @@ const updateLocationSelectItems = (itemsContainer, items) => {
   });
 };
 
-// 將town推入city數組
-for (const city in constant.REGION) {
-  const districts = constant.REGION[city];
-  cityToTowns[city] = Object.keys(districts);
-}
+// 將 town 推入 city 數組
+Object.keys(constant.REGION).forEach(city => {
+  cityToTowns[city] = Object.keys(constant.REGION[city]);
+});
 
-// local選單點擊事件
+// local 選單點擊事件
 localItems.addEventListener("click", (event) => {
   const closestDiv = event.target.closest(".usr-location .select-items > div");
   if (closestDiv) {
-    const selectedLocal = closestDiv.textContent;
-    updateLocationSelectItems(CityItems, localArr[selectedLocal]);
+    updateLocationSelectItems(CityItems, localArr[closestDiv.textContent]);
     updateLocationSelectItems(TownItems, []);
     saveSelectionToLocalStorage("", "", "");
   }
 });
 
-// city選單點擊事件
+// city 選單點擊事件
 CityItems.addEventListener("click", (event) => {
   const closestDiv = event.target.closest(".usr-location .select-items > div");
   if (closestDiv) {
-    const selectedCity = closestDiv.textContent;
-    CitySelect.textContent = selectedCity;
-    updateLocationSelectItems(TownItems, cityToTowns[selectedCity] || []);
+    CitySelect.textContent = closestDiv.textContent;
+    updateLocationSelectItems(TownItems, cityToTowns[closestDiv.textContent] || []);
     TownSelect.textContent = "town";
-    saveSelectionToLocalStorage(selectedCity, "", "");
+    saveSelectionToLocalStorage(closestDiv.textContent, "", "");
   }
 });
 
-// town選單點擊事件
+// town 選單點擊事件
 TownItems.addEventListener("click", (event) => {
   const closestDiv = event.target.closest(".usr-location .select-items > div");
   if (closestDiv) {
-    const selectedTown = closestDiv.textContent;
-    TownSelect.textContent = selectedTown;
+    TownSelect.textContent = closestDiv.textContent;
     document.querySelector(".current-city").textContent = CitySelect.textContent;
-    document.querySelector(".current-town").textContent = selectedTown;
-    saveSelectionToLocalStorage(CitySelect.textContent, selectedTown, "");
+    document.querySelector(".current-town").textContent = closestDiv.textContent;
+    saveSelectionToLocalStorage(CitySelect.textContent, closestDiv.textContent, "");
   }
 });
 
@@ -179,7 +157,6 @@ addLocationSelectEvent(CityItems, CitySelect);
 addLocationSelectEvent(TownItems, TownSelect);
 
 // 設定頁面背景透明度滑塊
-const settingWrapper = document.querySelector(".setting-wrapper");
 const sliderContainer = document.querySelector(".slider-container");
 const sliderTrack = document.querySelector(".slider-track");
 const sliderThumb = document.querySelector(".slider-thumb");
@@ -199,34 +176,32 @@ document.addEventListener("mousemove", (event) => {
     const containerRect = sliderContainer.getBoundingClientRect();
     let newLeft = event.clientX - containerRect.left;
 
-    if (newLeft < 0) newLeft = 0;
-    else if (newLeft > containerRect.width) newLeft = containerRect.width;
+    newLeft = Math.max(0, Math.min(newLeft, containerRect.width));
 
     const percentage = (newLeft / containerRect.width) * 100;
     const blurValue = (newLeft / containerRect.width) * 20;
 
     sliderThumb.style.left = `${percentage}%`;
     sliderTrack.style.width = `${percentage}%`;
-    settingWrapper.style.backdropFilter = `blur(${blurValue}px)`;
+    SettingWrapper.style.backdropFilter = `blur(${blurValue}px)`;
   }
 });
 
-// 儲存user選擇的city和town到storage
+// 儲存 user 選擇的 city 和 town 到 storage
 const saveSelectionToLocalStorage = (city, town, station) => {
   localStorage.setItem("current-city", city);
   localStorage.setItem("current-town", town);
   localStorage.setItem("current-station", station);
 };
 
-// 從storage儲存中取得user之前保存的選項
-const getSelectionFromLocalStorage = () => {
-  const city = localStorage.getItem("current-city");
-  const town = localStorage.getItem("current-town");
-  const station = localStorage.getItem("current-station");
-  return { city, town, station };
-};
+// 從 storage 取得 user 之前保存的選項
+const getSelectionFromLocalStorage = () => ({
+  city    : localStorage.getItem("current-city"),
+  town    : localStorage.getItem("current-town"),
+  station : localStorage.getItem("current-station"),
+});
 
-// 渲染user之前保存的選項到頁面
+// 渲染 user 之前保存的選項到頁面
 const renderSelectionFromLocalStorage = () => {
   const { city, town, station } = getSelectionFromLocalStorage();
   document.querySelector(".current-city").textContent = city;
@@ -234,12 +209,12 @@ const renderSelectionFromLocalStorage = () => {
 
   if (station) {
     const current_station = document.querySelector(".current-station");
-    const station_Json = JSON.parse(localStorage.getItem("current-station"));
-    current_station.textContent = `${station_Json.net} ${station_Json.code}-${station_Json.name} ${station_Json.loc}`;
+    const stationData = JSON.parse(localStorage.getItem("current-station"));
+    current_station.textContent = `${stationData.net} ${stationData.code}-${stationData.name} ${stationData.loc}`;
   }
 };
 
-// 渲染user之前保存的選項
+// 渲染 user 之前保存的選項
 window.addEventListener("DOMContentLoaded", renderSelectionFromLocalStorage);
 
 const StationWrapper = document.querySelector(".realtime-station");
@@ -258,8 +233,10 @@ async function realtime_station() {
     const data = await res.json();
 
     if (data) {
-      StationItems.innerHTML = "";
-      const stationsArray = Object.keys(data).map(station => {
+      StationList.length = 0;
+      StationRegion.length = 0;
+
+      Object.keys(data).forEach(station => {
         const info = data[station].info[data[station].info.length - 1];
         let loc = region_code_to_string(constant.REGION, info.code);
 
@@ -268,14 +245,10 @@ async function realtime_station() {
 
 
         if (!loc)
-          if (station === "13379360")
-            loc = "重慶市北碚區";
-          else if (station === "7735548")
-            loc = "南陽州市和道邑";
-          else
-            loc = "未知區域";
+          loc = getFallbackLocation(station);
         else
           loc = `${loc.city}${loc.town}`;
+
 
         const StationInfo = {
           name : station,
@@ -285,7 +258,6 @@ async function realtime_station() {
         };
 
         StationList.push(StationInfo);
-        return StationInfo;
       });
 
       RenderStationRegion();
@@ -295,6 +267,17 @@ async function realtime_station() {
   }
 }
 realtime_station();
+
+function getFallbackLocation(station) {
+  switch (station) {
+    case "13379360":
+      return "重慶市北碚區";
+    case "7735548":
+      return "南陽州市和道邑";
+    default:
+      return "未知區域";
+  }
+}
 
 // 渲染縣市元素
 function RenderStationRegion() {
@@ -355,10 +338,7 @@ function renderFilteredStations(stations) {
 // 即時測站-下拉選單點擊事件
 StationLocation.addEventListener("click", function() {
   const ArrowSpan = this.querySelector(".selected-btn");
-  if (ArrowSpan.textContent.trim() === "keyboard_arrow_up")
-    ArrowSpan.textContent = "keyboard_arrow_down";
-  else
-    ArrowSpan.textContent = "keyboard_arrow_up";
+  ArrowSpan.textContent = ArrowSpan.textContent.trim() === "keyboard_arrow_up" ? "keyboard_arrow_down" : "keyboard_arrow_up";
   StationSelectWrapper.classList.toggle("select-show-big");
 });
 
