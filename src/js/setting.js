@@ -263,7 +263,6 @@ async function realtime_station() {
         const info = data[station].info[data[station].info.length - 1];
         let loc = region_code_to_string(constant.REGION, info.code);
 
-        // 將 loc.city 添加到 StationRegion 數組中
         if (loc && !StationRegion.includes(loc.city))
           StationRegion.push(loc.city);
 
