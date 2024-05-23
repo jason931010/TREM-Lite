@@ -423,14 +423,14 @@ LoginBack.addEventListener("click", () => {
   });
 });
 
-// 登入
+// 表單登入按鈕
 FormLogin.addEventListener("click", async () => {
   const email = FormEmail.value;
   const password = FormPassword.value;
   await login(email, password);
 });
 
-// 登出
+// 表單登出按鈕
 LogoutBtn.addEventListener("click", async () => {
   const token = localStorage.getItem("user-token");
   await logout(token);
@@ -462,7 +462,7 @@ async function login(email, password) {
         const data = await response.text();
         LoginMsg.classList.add("success");
         LoginMsg.textContent = "登入成功！";
-        LoginSuccess(await getUserInfo(data), data);
+        LoginSuccess(await getUserInfo(data));
         break;
       }
       case response.status === 400 || response.status === 401:
@@ -533,12 +533,12 @@ async function getUserInfo(data) {
 }
 
 // 登入成功畫面
-function LoginSuccess(msg, token) {
+function LoginSuccess(msg) {
   LoginBtn.style.display = "none";
   LogoutBtn.style.display = "flex";
   act.textContent = "Welcome";
   vip.textContent = `VIP-${msg.vip}`;
-  localStorage.setItem("user-token", token);
+  localStorage.setItem("user-token", msg.device[0].key);
   LoginBack.dispatchEvent(clickEvent);
 }
 
