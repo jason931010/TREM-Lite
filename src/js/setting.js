@@ -22,6 +22,7 @@ const ResetBtn = document.querySelector(".setting-reset-btn");
 const ResetConfirmWrapper = document.querySelector(".reset-confirm-wrapper");
 const ResetCancel = document.querySelector(".reset-cancel");
 const ResetSure = document.querySelector(".reset-sure");
+const LoginBtn = document.querySelector(".login-btn");
 
 const LocationWrapper = document.querySelector(".usr-location");
 const Location = LocationWrapper.querySelector(".location");
@@ -372,3 +373,92 @@ const addStationSelectEvent = (itemsContainer) => {
 };
 
 addStationSelectEvent(StationItems);
+
+// 登入相關
+const loginFormsContent = document.querySelector(".login-forms-content");
+const accountInfoContent = document.querySelector(".usr-account-info-content");
+const login_btn = document.querySelector(".login-btn");
+const login_back = document.querySelector(".login-back");
+const form_login = document.querySelector("#form-login");
+const form_email = document.querySelector("#email");
+const form_password = document.querySelector("#password");
+const login_msg = document.querySelector(".login_msg");
+
+login_btn.addEventListener("click", () => {
+  loginFormsContent.style.display = "grid";
+  requestAnimationFrame(() => {
+    loginFormsContent.classList.add("show-login-form");
+    accountInfoContent.classList.add("hide-account-info");
+  });
+
+  accountInfoContent.style.display = "none";
+  accountInfoContent.addEventListener("transitionend", function onTransitionEnd() {
+    if (accountInfoContent.classList.contains("hide-account-info"))
+      accountInfoContent.removeEventListener("transitionend", onTransitionEnd);
+
+  });
+});
+
+login_back.addEventListener("click", () => {
+  accountInfoContent.style.display = "block";
+  requestAnimationFrame(() => {
+    loginFormsContent.classList.remove("show-login-form");
+    accountInfoContent.classList.remove("hide-account-info");
+  });
+
+  loginFormsContent.style.display = "none";
+
+  loginFormsContent.addEventListener("transitionend", function onTransitionEnd() {
+    if (!loginFormsContent.classList.contains("show-login-form"))
+      loginFormsContent.removeEventListener("transitionend", onTransitionEnd);
+
+  });
+});
+
+// 登入請求
+form_login.addEventListener("click", async () => {
+  const email = form_email.value;
+  const password = form_password.value;
+
+  const requestBody = {
+    email : email,
+    pass  : password,
+    name  : "admin",
+  };
+
+  try {
+    const response = await fetch("https://api.exptech.com.tw/api/v3/et/login", {
+      method  : "POST",
+      headers : {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    });
+
+    login_msg.classList.remove("error");
+    login_msg.classList.remove("success");
+
+
+    switch (true) {
+      case response.status >= 200 && response.status <= 299: {
+        const data = await response.text();
+        console.log(data);
+        login_msg.classList.add("success");
+        login_msg.textContent = "登入成功！";
+        break;
+      }
+      case response.status === 400 || response.status === 401:
+        login_msg.classList.add("error");
+        login_msg.textContent = "帳號或密碼錯誤！";
+        console.error(`Bad request - ${response.status} error`);
+        break;
+      default:
+        login_msg.classList.add("error");
+        login_msg.textContent = `伺服器異常-err ${response.status}`;
+        break;
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+});
