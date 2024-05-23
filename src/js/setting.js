@@ -375,52 +375,68 @@ const addStationSelectEvent = (itemsContainer) => {
 addStationSelectEvent(StationItems);
 
 // 登入相關
-const loginFormsContent = document.querySelector(".login-forms-content");
-const accountInfoContent = document.querySelector(".usr-account-info-content");
-const login_btn = document.querySelector(".login-btn");
-const login_back = document.querySelector(".login-back");
-const form_login = document.querySelector("#form-login");
-const form_email = document.querySelector("#email");
-const form_password = document.querySelector("#password");
-const login_msg = document.querySelector(".login_msg");
+const LoginFormContent = document.querySelector(".login-forms-content");
+const AccountInfoContent = document.querySelector(".usr-account-info-content");
+const act = document.querySelector(".account");
+const vip = document.querySelector(".vip");
+const LogoutBtn = document.querySelector(".logout-btn");
+const LoginBack = document.querySelector(".login-back");
 
-login_btn.addEventListener("click", () => {
-  loginFormsContent.style.display = "grid";
+const FormLogin = document.querySelector("#form-login");
+const FormEmail = document.querySelector("#email");
+const FormPassword = document.querySelector("#password");
+const LoginMsg = document.querySelector(".login_msg");
+const url = "https://api.exptech.com.tw/api/v3/et/";
+
+// 跳轉到登入表單
+LoginBtn.addEventListener("click", () => {
+  LoginFormContent.style.display = "grid";
   requestAnimationFrame(() => {
-    loginFormsContent.classList.add("show-login-form");
-    accountInfoContent.classList.remove("show-account-info");
+    LoginFormContent.classList.add("show-login-form");
+    AccountInfoContent.classList.remove("show-account-info");
   });
 
-  accountInfoContent.style.display = "none";
+  AccountInfoContent.style.display = "none";
 
-  accountInfoContent.addEventListener("transitionend", function onTransitionEnd() {
-    if (accountInfoContent.classList.contains("hide-account-info"))
-      accountInfoContent.removeEventListener("transitionend", onTransitionEnd);
+  AccountInfoContent.addEventListener("transitionend", function onTransitionEnd() {
+    if (AccountInfoContent.classList.contains("hide-account-info"))
+      AccountInfoContent.removeEventListener("transitionend", onTransitionEnd);
 
   });
 });
 
-login_back.addEventListener("click", () => {
-  accountInfoContent.style.display = "block";
+// 返回登入首頁/帳號資訊
+LoginBack.addEventListener("click", () => {
+  AccountInfoContent.style.display = "block";
   requestAnimationFrame(() => {
-    accountInfoContent.classList.add("show-account-info");
-    loginFormsContent.classList.remove("show-login-form");
+    AccountInfoContent.classList.add("show-account-info");
+    LoginFormContent.classList.remove("show-login-form");
   });
 
-  loginFormsContent.style.display = "none";
+  LoginFormContent.style.display = "none";
 
-  loginFormsContent.addEventListener("transitionend", function onTransitionEnd() {
-    if (!loginFormsContent.classList.contains("show-login-form"))
-      loginFormsContent.removeEventListener("transitionend", onTransitionEnd);
+  LoginFormContent.addEventListener("transitionend", function onTransitionEnd() {
+    if (!LoginFormContent.classList.contains("show-login-form"))
+      LoginFormContent.removeEventListener("transitionend", onTransitionEnd);
 
 
   });
 });
 
-// 登入請求
-form_login.addEventListener("click", async () => {
-  const email = form_email.value;
-  const password = form_password.value;
+// 登入
+FormLogin.addEventListener("click", async () => {
+  const email = FormEmail.value;
+  const password = FormPassword.value;
+  await login(email, password);
+});
+
+// 登出
+LogoutBtn.addEventListener("click", async () => {
+  const token = localStorage.getItem("user-token");
+  await logout(token);
+});
+
+async function login(email, password) {
 
   const requestBody = {
     email : email,
@@ -429,7 +445,7 @@ form_login.addEventListener("click", async () => {
   };
 
   try {
-    const response = await fetch("https://api.exptech.com.tw/api/v3/et/login", {
+    const response = await fetch(`${url}login`, {
       method  : "POST",
       headers : {
         "Content-Type": "application/json",
@@ -437,29 +453,97 @@ form_login.addEventListener("click", async () => {
       body: JSON.stringify(requestBody),
     });
 
-    login_msg.classList.remove("error");
-    login_msg.classList.remove("success");
+    LoginMsg.classList.remove("error");
+    LoginMsg.classList.remove("success");
 
 
     switch (true) {
       case response.status >= 200 && response.status <= 299: {
         const data = await response.text();
-        console.log(data);
-        login_msg.classList.add("success");
-        login_msg.textContent = "登入成功！";
+        LoginMsg.classList.add("success");
+        LoginMsg.textContent = "登入成功！";
+        LoginSuccess(await getUserInfo(data), data);
         break;
       }
       case response.status === 400 || response.status === 401:
-        login_msg.classList.add("error");
-        login_msg.textContent = "帳號或密碼錯誤！";
+        LoginMsg.classList.add("error");
+        LoginMsg.textContent = "帳號或密碼錯誤！";
         break;
       default:
-        login_msg.classList.add("error");
-        login_msg.textContent = `伺服器異常(error ${response.status})`;
+        LoginMsg.classList.add("error");
+        LoginMsg.textContent = `伺服器異常(error ${response.status})`;
         break;
     }
 
   } catch (error) {
     console.error("Error:", error);
   }
+}
+
+async function logout(token) {
+  try {
+    const response = await fetch(`${url}logout`, {
+      method  : "DELETE",
+      headers : {
+        "Content-Type"  : "application/json",
+        "Authorization" : `Basic ${token}`,
+      },
+    });
+
+    switch (true) {
+      case response.status >= 200 && response.status <= 299: {
+        const data = await response.text();
+        LoginMsg.classList.add("success");
+        LoginMsg.textContent = "登出成功！";
+        LoginBtn.dispatchEvent(clickEvent);
+        break;
+      }
+      default:
+        LoginMsg.classList.add("error");
+        LoginMsg.textContent = `伺服器異常(error ${response.status})`;
+        break;
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+async function getUserInfo(data) {
+  console.log(data);
+  try {
+    const response = await fetch(`${url}info`, {
+      method  : "GET",
+      headers : {
+        "Content-Type"  : "application/json",
+        "Authorization" : `Basic ${data}`,
+      },
+    });
+
+    if (response.ok) {
+      const userInfo = await response.json();
+      return userInfo;
+    } else
+      throw new Error(`伺服器異常(error ${response.status})`);
+
+  } catch (error) {
+    console.error("error:", error);
+    return {};
+  }
+}
+
+// 登入成功畫面
+function LoginSuccess(msg, token) {
+  LoginBtn.style.display = "none";
+  LogoutBtn.style.display = "flex";
+  act.textContent = "Welcome";
+  vip.textContent = `VIP-${msg.vip}`;
+  localStorage.setItem("user-token", token);
+  LoginBack.dispatchEvent(clickEvent);
+}
+
+const clickEvent = new MouseEvent("click", {
+  bubbles    : true,
+  cancelable : true,
+  view       : window,
 });

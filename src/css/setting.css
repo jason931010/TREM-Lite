@@ -231,7 +231,7 @@ body {
 .setting-page-title {
     font-size: 25px;
     font-weight: bold;
-    padding-top: 1.5vw;
+    padding-top: 1vw;
     position: relative;
     bottom: .5rem;
     z-index: 1;
@@ -257,7 +257,7 @@ body {
 /**右邊頁面內選項容器**/
 .setting-item-wrapper {
     position: absolute;
-    top: 5.5rem;
+    top: 4rem;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -699,11 +699,11 @@ li {
     transition: border-color 0.3s, box-shadow 0.3s;
     font-family: "Noto Sans TC", sans-serif;
     width: 100%;
-}
 
-.login-forms-content input:focus {
-    border-color: #aad7fc80;
-    outline: none;
+    &:focus {
+        border-color: #aad7fc80;
+        outline: none;
+    }
 }
 
 
@@ -716,6 +716,10 @@ li {
     margin-bottom: .5vw;
     cursor: pointer;
     width: 100%;
+
+    &:hover {
+        color: #4e89ff;
+    }
 }
 
 .login-back div {
@@ -738,10 +742,18 @@ li {
     margin-top: 1vh;
 }
 
-.vip {
+.logout-btn {
+    border-radius: 5px;
+    border: 1px solid #ffffff24;
+    padding: 5px;
+    width: 5rem;
+    height: 1.5rem;
+    text-align: center;
+    margin-right: 0.5vw;
+    margin-left: 0.5vw;
+    cursor: pointer;
+    align-items: center;
     display: none;
-}
-
-.permission {
-    display: none;
+    justify-content: center;
+    margin-top: 1vh;
 }
