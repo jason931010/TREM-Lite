@@ -257,7 +257,7 @@ body {
 /**右邊頁面內選項容器**/
 .setting-item-wrapper {
     position: absolute;
-    bottom: 0;
+    top: 5.5rem;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -350,6 +350,7 @@ body {
     color: #ffc756;
 }
 
+.graphics .setting-option .selected-btn,
 .general .setting-option .selected-btn {
     font-size: 25px;
     width: 45px;
@@ -632,6 +633,10 @@ li {
     border-color: #ffffff14;
     border-style: solid;
     overflow: hidden;
+}
+
+.usr-account-info-content {
+    transform: translateX(-175%);
     opacity: 1;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -656,14 +661,8 @@ li {
 
 .show-account-info {
     display: grid;
-    transform: translateX(0);
+    transform: translateX(0%);
     opacity: 1;
-}
-
-.hide-login-form {
-    transform: translateX(-100%);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .login-form-input {

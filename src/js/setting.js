@@ -388,10 +388,11 @@ login_btn.addEventListener("click", () => {
   loginFormsContent.style.display = "grid";
   requestAnimationFrame(() => {
     loginFormsContent.classList.add("show-login-form");
-    accountInfoContent.classList.add("hide-account-info");
+    accountInfoContent.classList.remove("show-account-info");
   });
 
   accountInfoContent.style.display = "none";
+
   accountInfoContent.addEventListener("transitionend", function onTransitionEnd() {
     if (accountInfoContent.classList.contains("hide-account-info"))
       accountInfoContent.removeEventListener("transitionend", onTransitionEnd);
@@ -402,8 +403,8 @@ login_btn.addEventListener("click", () => {
 login_back.addEventListener("click", () => {
   accountInfoContent.style.display = "block";
   requestAnimationFrame(() => {
+    accountInfoContent.classList.add("show-account-info");
     loginFormsContent.classList.remove("show-login-form");
-    accountInfoContent.classList.remove("hide-account-info");
   });
 
   loginFormsContent.style.display = "none";
@@ -411,6 +412,7 @@ login_back.addEventListener("click", () => {
   loginFormsContent.addEventListener("transitionend", function onTransitionEnd() {
     if (!loginFormsContent.classList.contains("show-login-form"))
       loginFormsContent.removeEventListener("transitionend", onTransitionEnd);
+
 
   });
 });
@@ -450,11 +452,10 @@ form_login.addEventListener("click", async () => {
       case response.status === 400 || response.status === 401:
         login_msg.classList.add("error");
         login_msg.textContent = "帳號或密碼錯誤！";
-        console.error(`Bad request - ${response.status} error`);
         break;
       default:
         login_msg.classList.add("error");
-        login_msg.textContent = `伺服器異常-err ${response.status}`;
+        login_msg.textContent = `伺服器異常(error ${response.status})`;
         break;
     }
 

@@ -543,7 +543,7 @@
                 </div>
                 <div class="usr-account-info-wrapper">
                     <div class="usr-account-info-container">
-                        <div class="usr-account-info-content">
+                        <div class="usr-account-info-content show-account-info">
                             <div class="usr-account">尚未登入</div>
                             <div class="login-btn">登入</div>
                             <div class="vip">1</div>
@@ -793,13 +793,18 @@
                         <div class="setting-item-content">
                             <span class="setting-item-title">地圖顯示效果</span>
                             <span class="description">設定在地圖上的顯示效果。</span>
-                            <div class="setting-option">
-                                <div>
-                                    <span>中央氣象署 (CWA)</span>
-                                    <label class="switch">
-                                        <input id="graphics-display-effect" type="checkbox">
-                                        <div class="slider round"></div>
-                                    </label>
+                            <div class="setting-option map-show">
+                                <div class="location">
+                                    <span class="current-station">實測震度 + 預估震度</span>
+                                    <span class="selected-btn report-detail-field-icon material-symbols-rounded">
+                                        keyboard_arrow_down
+                                    </span>
+                                </div>
+                                <div class="select-wrapper">
+                                    <div class="select-selected current-local" style="display:none;">選擇地區</div>
+                                    <div class="select-items local"></div>
+                                    <div class="select-selected current-station" style="display:none;">選擇測站</div>
+                                    <div class="select-items station"></div>
                                 </div>
                             </div>
                         </div>
