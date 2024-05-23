@@ -495,7 +495,7 @@ async function logout(token) {
         const data = await response.text();
         LoginMsg.classList.add("success");
         LoginMsg.textContent = "登出成功！";
-        LoginBtn.dispatchEvent(clickEvent);
+        LogoutSuccess();
         break;
       }
       default:
@@ -540,6 +540,16 @@ function LoginSuccess(msg, token) {
   vip.textContent = `VIP-${msg.vip}`;
   localStorage.setItem("user-token", token);
   LoginBack.dispatchEvent(clickEvent);
+}
+
+// 登出成功畫面
+function LogoutSuccess() {
+  LoginBtn.style.display = "flex";
+  LogoutBtn.style.display = "none";
+  act.textContent = "尚未登入";
+  vip.textContent = "";
+  localStorage.removeItem("user-token", "");
+  LoginBtn.dispatchEvent(clickEvent);
 }
 
 const clickEvent = new MouseEvent("click", {
