@@ -3,6 +3,7 @@ get_station_info();
 setInterval(get_station_info, constant.STATION_INFO_FETCH_TIME);
 
 const max_pga_text = document.getElementById("max-pga");
+const realtime_list = document.getElementById("realtime-list");
 
 function get_station_info() {
   logger.info("[Fetch] Fetching station data...");
@@ -67,20 +68,44 @@ function show_rts_box(_colors) {
 function show_rts_dot(data, alert) {
   if (!variable.station_info) return;
 
-  if (!alert) variable.audio = {
-    shindo : -1,
-    pga    : -1,
-    status : {
-      shindo : 0,
-      pga    : 0,
-    },
-    count: {
-      pga_1    : 0,
-      pga_2    : 0,
-      shindo_1 : 0,
-      shindo_2 : 0,
-    },
-  };
+  if (!alert)
+    variable.audio = {
+      shindo : -1,
+      pga    : -1,
+      status : {
+        shindo : 0,
+        pga    : 0,
+      },
+      count: {
+        pga_1    : 0,
+        pga_2    : 0,
+        shindo_1 : 0,
+        shindo_2 : 0,
+      },
+    };
+  else {
+    realtime_list.innerHTML = "";
+
+    console.log(data.int);
+
+    for (const area of data.int) {
+      const box = document.createElement("div");
+      box.className = "realtime-item";
+
+      const int = document.createElement("div");
+      int.className = `realtime-intensity intensity-${area.i}`;
+      int.textContent = int_to_intensity(area.i);
+
+      const loc = document.createElement("div");
+      loc.className = "realtime-location";
+      const loc_str = region_code_to_string(constant.REGION, area.code);
+      loc.textContent = `${loc_str.city}${loc_str.town}`;
+
+      box.appendChild(int);
+      box.appendChild(loc);
+      realtime_list.appendChild(box);
+    }
+  }
 
   for (const _id of Object.keys(variable.station_icon)) {
     variable.station_icon[_id].remove();
