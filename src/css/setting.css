@@ -53,7 +53,6 @@ body {
     font-feature-settings: "liga";
 }
 
-/**滾桿外層label**/
 .switch {
     display: inline-block;
     width: 45px;
@@ -62,7 +61,6 @@ body {
     left: 84vw;
 }
 
-/**滾桿容器**/
 .slider {
     position: absolute;
     cursor: pointer;
@@ -74,7 +72,6 @@ body {
     transition: .4s;
 }
 
-/**滾桿球**/
 .slider.round {
     border-radius: 20px;
 
@@ -91,12 +88,10 @@ body {
     }
 }
 
-/**滾桿輸入框**/
 .switch input {
     display: none;
 }
 
-/**滾桿輸入框選中時**/
 .switch input:checked+.slider {
     background-color: #1bd337;
     box-shadow: inset 0 0 3px rgb(0 0 0 /40%);
@@ -106,7 +101,6 @@ body {
     }
 }
 
-/**整個設定的容器**/
 .setting-wrapper {
     left: 0vw;
     height: 100%;
@@ -120,7 +114,6 @@ body {
     transition: opacity .3s ease;
 }
 
-/**整個設定的容器第二層**/
 .setting-container {
     display: flex;
     flex-direction: inherit;
@@ -128,7 +121,6 @@ body {
     min-height: 0;
 }
 
-/**左右物件**/
 .setting-header,
 .setting-content {
     width: 27vw;
@@ -137,12 +129,10 @@ body {
     backdrop-filter: blur(15px);
 }
 
-/**左邊按鈕**/
 .setting-buttons {
     padding: 12px;
 }
 
-/**左邊按鈕**/
 .button {
     background: rgb(44 51 68 / 61%);
     border-radius: 10px;
@@ -155,12 +145,10 @@ body {
     cursor: pointer;
 }
 
-/**左邊按鈕選中**/
 .button.on {
     background: rgb(84 107 165 / 61%);
 }
 
-/**左邊按鈕span**/
 .button span {
     font-size: 16px;
     font-weight: 500;
@@ -168,7 +156,6 @@ body {
     color: #fff;
 }
 
-/**左邊設定標題**/
 .setting-title {
     display: flex;
     align-items: center;
@@ -182,7 +169,6 @@ body {
 }
 
 
-/**返回按鈕**/
 .back_to_home .report-detail-field-icon.material-symbols-rounded {
     position: relative;
     top: 0.5rem;
@@ -196,7 +182,6 @@ body {
     }
 }
 
-/**重設按鈕**/
 .setting-reset-btn {
     border-radius: 25px;
     border: 1px solid rgb(45 52 70 / 0%);
@@ -211,13 +196,11 @@ body {
     text-rendering: optimizeLegibility;
 }
 
-/**左邊設定標題span**/
 .setting-title span {
     font-size: 24px;
     font-weight: 500;
 }
 
-/**右邊頁面整個容器**/
 .setting-options-page {
     align-items: center;
     display: flex;
@@ -227,7 +210,6 @@ body {
     padding: 12px 12px 12px 12px;
 }
 
-/**右邊頁面標題**/
 .setting-page-title {
     font-size: 25px;
     font-weight: bold;
@@ -237,24 +219,20 @@ body {
     z-index: 1;
 }
 
-/**右邊頁面內容器**/
 .setting-content {
     background-color: rgb(59 59 59 / 35%);
     backdrop-filter: blur(20px);
     flex: 1;
 }
 
-/**右邊頁面內容器**/
 .setting-options-page {
     display: none;
 }
 
-/**右邊頁面內容器被選中**/
 .setting-options-page.active {
     display: flex;
 }
 
-/**右邊頁面內選項容器**/
 .setting-item-wrapper {
     position: absolute;
     top: 4rem;
@@ -270,30 +248,25 @@ body {
     }
 }
 
-/**右邊頁面內選項容器第二層**/
 .setting-item-content {
     width: 50vw;
     margin-top: 3vw;
 }
 
-/**右邊頁面內選項標題**/
 .setting-item-title {
     padding-left: 1vw;
 }
 
-/**選項標題**/
 .setting-option span {
     font-size: 15px;
     font-weight: normal;
 }
 
-/**選項外層容器**/
 .setting-item-title {
     font-size: 17px;
     font-weight: 500;
 }
 
-/**選項內層容器**/
 .setting-option {
     display: grid;
     background-color: #0000003b;
@@ -302,8 +275,7 @@ body {
 }
 
 
-/**選項**/
-.setting-item-content div div:not(.select-items, .select-wrapper) {
+.setting-item-content div div:not(.select-items, .select-wrapper, .condition-items) {
     padding: 13px;
     align-content: center;
     justify-content: unset;
@@ -313,11 +285,6 @@ body {
         border-bottom: 1px solid black;
         border-color: rgb(255 255 255 / 5%);
     }
-}
-
-/**選項文字**/
-.setting-item-content div span {
-    font-weight: 600;
 }
 
 /**description**/
@@ -377,13 +344,11 @@ body {
 }
 
 
-/**關於頁面**/
 .setting-version,
 .setting-uuid {
     flex-direction: column;
 }
 
-/**版本號、UUID**/
 #version,
 #uuid {
     font-size: 15px;
@@ -395,7 +360,6 @@ body {
     padding: 10px;
 }
 
-/**貢獻者ul**/
 .contributor ul {
     margin: 0;
 }
@@ -404,7 +368,6 @@ li {
     list-style-type: square;
 }
 
-/**返回按鈕**/
 .back_to_home {
     border-radius: 30px;
     border: 1px solid #424a5b0d;
@@ -475,12 +438,6 @@ li {
     padding: 0 !important;
 }
 
-
-/**下拉菜單**/
-.custom-select {
-    display: none;
-}
-
 .select-wrapper {
     padding-top: 0px !important;
 }
@@ -502,7 +459,8 @@ li {
 .local div,
 .city div,
 .town div,
-.station div {
+.station div,
+.int div {
     color: white;
     cursor: pointer;
     user-select: none;
@@ -516,6 +474,7 @@ li {
 .city div:hover,
 .town div:hover,
 .station div:hover,
+.int div:hover,
 .select-option-selected {
     background-color: rgb(255 255 255 / 6%);
 }
@@ -756,4 +715,34 @@ li {
     display: none;
     justify-content: center;
     margin-top: 1vh;
+}
+
+#forget {
+    margin-top: 0.5vw;
+    cursor: pointer;
+    color: #ff6060;
+    text-decoration: none;
+    border-bottom: 0px dotted;
+}
+
+.realtime-int,
+.estimate-int {
+    border: 1px solid #ffffff36;
+    width: 35px;
+    display: inline-flex;
+    text-align: center;
+    border-radius: 5px;
+    height: 24px;
+    justify-content: center;
+}
+
+.warning-realtime-station .select-items,
+.warning-estimate-int .select-items {
+    width: 100%;
+    justify-content: center;
+    display: block;
+}
+
+.int div {
+    justify-content: center !important;
 }

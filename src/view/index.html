@@ -560,6 +560,8 @@
                                 <input type="password" id="password" placeholder="密碼">
                                 <span class="login_msg error"></span>
                                 <div id="form-login" class="login-btn">登入</div>
+                                <a target="_blank" href="https://exptech.com.tw/forgot"
+                                    id="forget"><span>忘記密碼？</span></a>
                             </div>
                         </div>
                     </div>
@@ -618,7 +620,7 @@
                             </span>
                             <div class="setting-option realtime-station">
                                 <div class="location">
-                                    <span class="current-station">未知</span>
+                                    <span class="current-station"></span>
                                     <span class="selected-btn report-detail-field-icon material-symbols-rounded">
                                         keyboard_arrow_down
                                     </span>
@@ -637,13 +639,52 @@
                             <span class="description">
                                 即時測站(任一站)為觸發時任一站震度門檻，預估震度(所在地)為地震預警時所在地震度門檻，達到下方任一條件後軟體將會發出音效及彈出視窗。
                             </span>
-                            <div class="setting-option">
-                                <div>
-                                    <span>中央氣象署 (CWA)</span>
-                                    <label class="switch">
-                                        <input id="CWA" type="checkbox">
-                                        <div class="slider round"></div>
-                                    </label>
+                            <div class="setting-option warning-realtime-station">
+                                <div class="location">
+                                    <span class="current-realtime-station">即時測站（任一站）<span
+                                            class="realtime-int">0級</span></span>
+                                    <span class="selected-btn report-detail-field-icon material-symbols-rounded">
+                                        keyboard_arrow_down
+                                    </span>
+                                </div>
+                                <div class="select-wrapper">
+                                    <div class="select-selected current-local" style="display:none;">選擇地區</div>
+                                    <div class="select-items int">
+                                        <div>0級</div>
+                                        <div>1級</div>
+                                        <div>2級</div>
+                                        <div>3級</div>
+                                        <div>4級</div>
+                                        <div>5弱</div>
+                                        <div>5強</div>
+                                        <div>6弱</div>
+                                        <div>6強</div>
+                                        <div>7級</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="setting-option warning-estimate-int">
+                                <div class="location">
+                                    <span class="current-estimate-int">預估震度（所在地）<span
+                                            class="estimate-int">0級</span></span>
+                                    <span class="selected-btn report-detail-field-icon material-symbols-rounded">
+                                        keyboard_arrow_down
+                                    </span>
+                                </div>
+                                <div class="select-wrapper">
+                                    <div class="select-selected current-local" style="display:none;">選擇地區</div>
+                                    <div class="select-items int">
+                                        <div>0級</div>
+                                        <div>1級</div>
+                                        <div>2級</div>
+                                        <div>3級</div>
+                                        <div>4級</div>
+                                        <div>5弱</div>
+                                        <div>5強</div>
+                                        <div>6弱</div>
+                                        <div>6強</div>
+                                        <div>7級</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
